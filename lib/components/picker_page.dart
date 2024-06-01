@@ -1,4 +1,4 @@
-part of '../ns_components.dart';
+part of ns_components;
 
 class PickerPage<T> extends StatelessWidget {
   final String title;
