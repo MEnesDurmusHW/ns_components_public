@@ -37,8 +37,9 @@ class NSListSection extends StatelessWidget {
 
     return Padding(
       padding: NSPaddings.insetGroupedPadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
+        padding: EdgeInsets.zero,
+        shrinkWrap: true,
         children: [
           if (hasTitle)
             Padding(

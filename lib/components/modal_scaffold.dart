@@ -48,16 +48,15 @@ class ModalScaffold extends StatelessWidget {
           borderRadius: NSDecorations.borderRadius,
           child: navigatorKey == null
               ? nsScaffold
-              : ValueListenableBuilder(
-                  valueListenable: navigatorKey!.navigatorNotifier,
-                  builder: (context, widget, child) {
-                    return Stack(
-                      children: [
-                        nsScaffold,
-                        if (widget != null) widget,
-                      ],
-                    );
-                  },
+              : Navigator(
+                  key: navigatorKey!.navigatorKey,
+                  initialRoute: Navigator.defaultRouteName,
+                  onGenerateInitialRoutes: (_, __) => [
+                    CupertinoPageRoute(
+                      maintainState: false,
+                      builder: (_) => nsScaffold,
+                    ),
+                  ],
                 ),
         ),
       ),
@@ -66,13 +65,14 @@ class ModalScaffold extends StatelessWidget {
 }
 
 class NSNavigatorKey {
-  final navigatorNotifier = ValueNotifier<Widget?>(null);
+  final navigatorKey = GlobalKey<NavigatorState>();
 
-  void pushWidget(Widget widget) {
-    navigatorNotifier.value = widget;
+  Future<T?> pushWidget<T>(Widget widget) {
+    final route = CupertinoPageRoute<T>(builder: (_) => widget);
+    return navigatorKey.currentState?.push(route) ?? Future.value(null);
   }
 
-  void goBack() {
-    navigatorNotifier.value = null;
+  Future<bool> goBack<T>([T? result]) {
+    return navigatorKey.currentState?.maybePop(result) ?? Future.value(false);
   }
 }
