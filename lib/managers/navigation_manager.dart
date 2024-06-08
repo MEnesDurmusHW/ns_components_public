@@ -74,4 +74,23 @@ class NavigationManager {
         )) ??
         false;
   }
+
+  Future<void> simpleDialog({String? title, Widget? content, required String confirmText}) async {
+    return showCupertinoDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: title != null ? Text(title) : null,
+          content: content,
+          actions: [
+            CupertinoDialogAction(
+              onPressed: goBack,
+              isDefaultAction: true,
+              child: Text(confirmText),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
