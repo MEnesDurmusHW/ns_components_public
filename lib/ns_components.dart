@@ -8,8 +8,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
 
+//Components
 part 'components/bottom_navigation_bar_item.dart';
 part 'components/tab_bar.dart';
 part 'components/scaffold.dart';
@@ -38,18 +40,24 @@ part 'components/subComponents/check_mark.dart';
 part 'components/subComponents/close_button_in_box.dart';
 part 'components/subComponents/headline_in_box.dart';
 part 'components/subComponents/disposable_widget.dart';
-
 part 'components/models/widget.dart';
 part 'components/models/stateless_widget.dart';
+
+//Managers
+part 'managers/analytics_manager.dart';
+part 'managers/database_manager.dart';
 part 'managers/navigation_manager.dart';
 part 'managers/remote_config_manager.dart';
-part 'managers/analytics_manager.dart';
 part 'managers/log_manager.dart';
+
+//Resources
 part 'resources/colors.dart';
 part 'resources/decorations.dart';
 part 'resources/paddings.dart';
 part 'resources/constants.dart';
 part 'resources/text_styles.dart';
+
+//Utils
 part 'utils/utils.dart';
 part 'utils/context_extensions.dart';
 part 'utils/collection_extensions.dart';
@@ -58,7 +66,11 @@ part 'utils/state.dart';
 part 'utils/view_model.dart';
 part 'utils/reactive.dart';
 part 'utils/base_repository.dart';
+
+//Models
 part 'models/typedefs.dart';
+
+//Shareds
 part 'shared/views/settings/language_view.dart';
 part 'shared/views/settings/language_navigation_link.dart';
 part 'shared/views/settings/brightness_toggle.dart';

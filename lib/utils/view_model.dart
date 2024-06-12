@@ -4,7 +4,14 @@ class ViewModelBuilder<T extends BaseViewModel> extends StatefulWidget {
   final T Function() viewModelBuilder;
   final Widget Function(BuildContext context, T viewModel) builder;
   final bool singleton;
-  const ViewModelBuilder({Key? key, required this.viewModelBuilder, required this.builder, this.singleton = true}) : super(key: key);
+  final bool disposeViewModel;
+  const ViewModelBuilder({
+    super.key,
+    required this.viewModelBuilder,
+    required this.builder,
+    this.singleton = true,
+    this.disposeViewModel = true,
+  });
 
   @override
   State<ViewModelBuilder<T>> createState() => _ViewModelBuilderState<T>();
@@ -29,7 +36,7 @@ class _ViewModelBuilderState<T extends BaseViewModel> extends State<ViewModelBui
     super.initState();
   }
 
-  void _dispose() {
+  void disposeViewModel() {
     if (viewModel?.disposed ?? true) return;
     _viewModels.remove(T);
     viewModel?.dispose();
@@ -37,13 +44,13 @@ class _ViewModelBuilderState<T extends BaseViewModel> extends State<ViewModelBui
 
   @override
   void deactivate() {
-    _dispose();
+    if (widget.disposeViewModel) disposeViewModel();
     super.deactivate();
   }
 
   @override
   void dispose() {
-    _dispose();
+    if (widget.disposeViewModel) disposeViewModel();
     super.dispose();
   }
 

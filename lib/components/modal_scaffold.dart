@@ -52,10 +52,7 @@ class ModalScaffold extends StatelessWidget {
                   key: navigatorKey!.navigatorKey,
                   initialRoute: Navigator.defaultRouteName,
                   onGenerateInitialRoutes: (_, __) => [
-                    CupertinoPageRoute(
-                      maintainState: false,
-                      builder: (_) => nsScaffold,
-                    ),
+                    CupertinoPageRoute(builder: (_) => nsScaffold),
                   ],
                 ),
         ),

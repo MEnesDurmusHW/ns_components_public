@@ -37,7 +37,10 @@ class NSPickerPage<T> extends StatelessWidget {
           size: 26,
         ),
       ),
-      child: NSListSection(children: list.map((e) => optionBuilder(e, navigatorKey)).toList()),
+      child: NSListSection(
+        isScrollable: true,
+        children: list.map((e) => optionBuilder(e, navigatorKey)).toList(),
+      ),
     );
   }
 }
@@ -71,7 +74,7 @@ class NSPickerListTile<T> extends NSListTile {
       leading: leading,
       additionalInfo: additionalInfo,
       onTap: () => navigatorKey.pushWidget(NSPickerPage(
-        title: title,
+        title: pickerTitle,
         navigatorKey: navigatorKey,
         list: list,
         optionBuilder: optionBuilder,

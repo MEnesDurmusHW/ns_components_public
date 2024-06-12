@@ -6,6 +6,7 @@ class NSListSection extends StatelessWidget {
   final bool bigTitle;
   final String? footerText;
   final bool hasPadding;
+  final bool isScrollable;
   const NSListSection({
     super.key,
     required this.children,
@@ -13,6 +14,7 @@ class NSListSection extends StatelessWidget {
     this.footerText,
     this.hasPadding = true,
     this.bigTitle = false,
+    this.isScrollable = false,
   });
 
   bool get hasTitle => title != null;
@@ -40,6 +42,7 @@ class NSListSection extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         shrinkWrap: true,
+        physics: isScrollable ? null : const NeverScrollableScrollPhysics(),
         children: [
           if (hasTitle)
             Padding(
