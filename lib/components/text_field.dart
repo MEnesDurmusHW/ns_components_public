@@ -3,6 +3,7 @@ part of '../ns_components.dart';
 class NSTextField extends StatelessWidget {
   final String? placeholder;
   final Widget? suffix;
+  final OverlayVisibilityMode suffixMode;
   final Widget? actionSuffix;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
@@ -17,6 +18,7 @@ class NSTextField extends StatelessWidget {
     this.maxLength,
     this.enabled,
     this.actionSuffix,
+    this.suffixMode = OverlayVisibilityMode.always,
   }) : assert(suffix == null || actionSuffix == null);
 
   bool get isNumeric => [TextInputType.number].contains(keyboardType);
@@ -31,6 +33,7 @@ class NSTextField extends StatelessWidget {
         suffix: suffix ?? (isEnabled ? actionSuffix : null),
         controller: controller,
         maxLength: maxLength,
+        suffixMode: suffixMode,
         padding: const EdgeInsets.symmetric(vertical: NSPaddingTypes.s, horizontal: NSPaddingTypes.m),
         inputFormatters: [if (isNumeric) FilteringTextInputFormatter.digitsOnly],
         keyboardType: keyboardType,

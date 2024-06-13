@@ -52,3 +52,12 @@ mixin SingleItemSingleTimeMeasureSizeStateMixin<T extends StatefulWidget> on Sta
     }
   }
 }
+
+mixin SingleItemeMeasureSizeViewModelMixin on BaseViewModel {
+  Size? _size;
+  Size? get size => _size;
+  void onChange(Size? size) {
+    _size = size;
+    notifyListeners();
+  }
+}

@@ -69,7 +69,11 @@ class _NSScaffoldState extends State<NSScaffold> {
               controller: _scrollController,
               slivers: [
                 CupertinoSliverNavigationBar(
-                  border: !isTitleCentered ? null : Border(bottom: BorderSide(color: CupertinoColors.systemGrey.withOpacity(0.5))),
+                  border: !isTitleCentered
+                      ? null
+                      : Border(
+                          bottom: BorderSide(color: CupertinoColors.systemBackground.withOpacity(0.5)),
+                        ),
                   largeTitle: MeasureSize(onChange: onChange, child: Text(widget.title)),
                   trailing: widget.trailing,
                   automaticallyImplyLeading: false,
