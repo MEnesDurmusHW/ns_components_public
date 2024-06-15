@@ -1,6 +1,6 @@
-class Exception {
+class NSException {
   final String message;
   final String code;
 
-  const Exception(this.message, this.code);
+  const NSException(this.message, this.code);
 }
