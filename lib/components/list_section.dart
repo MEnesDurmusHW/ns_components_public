@@ -46,7 +46,7 @@ class NSListSection extends StatelessWidget {
         children: [
           if (hasTitle)
             Padding(
-              padding: EdgeInsets.only(left: bigTitle ? 0.0 : NSPaddingTypes.m, bottom: NSPaddingTypes.xs),
+              padding: EdgeInsets.only(left: bigTitle ? 0.0 : NSPaddingTypes.m, bottom: bigTitle ? NSPaddingTypes.m : NSPaddingTypes.xs),
               child: Text(
                 title!,
                 style: CupertinoTheme.of(context).textTheme.textStyle.merge(headerFooterTextStyle),

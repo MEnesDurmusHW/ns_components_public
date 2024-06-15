@@ -127,7 +127,7 @@ class _NSButtonState extends State<NSButton> with SingleItemSingleTimeMeasureSiz
     return SizedBox(
       width: widget.expanded ? double.infinity : null,
       child: Padding(
-        padding: widget.margin ?? NSPaddings.insetPadding,
+        padding: widget.margin ?? NSPaddings.insetGroupedPadding,
         child: MeasureSize(
           onChange: onChange,
           child: CupertinoButton(

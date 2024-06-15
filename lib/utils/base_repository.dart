@@ -82,8 +82,9 @@ extension _RepositoryPatternExtension<T extends BaseDatabaseItem> on List<T> {
 
 class RepositoryException implements Exception {
   final String message;
+  final String? code;
 
-  RepositoryException(this.message);
+  RepositoryException(this.message, [this.code]);
 
   @override
   String toString() => message;
