@@ -69,6 +69,7 @@ part 'utils/base_repository.dart';
 
 //Models
 part 'models/typedefs.dart';
+part 'models/exception.dart';
 
 //Shareds
 part 'shared/views/settings/language_view.dart';

@@ -1,3 +1,5 @@
+part of ns_components;
+
 class NSException {
   final String message;
   final String code;
