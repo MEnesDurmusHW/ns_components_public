@@ -9,6 +9,9 @@ class NSTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final int? maxLength;
   final bool? enabled;
+  final FocusNode? focusNode;
+  final bool autofocus;
+
   const NSTextField({
     super.key,
     this.placeholder,
@@ -19,6 +22,8 @@ class NSTextField extends StatelessWidget {
     this.enabled,
     this.actionSuffix,
     this.suffixMode = OverlayVisibilityMode.always,
+    this.focusNode,
+    this.autofocus = false,
   }) : assert(suffix == null || actionSuffix == null);
 
   bool get isNumeric => [TextInputType.number].contains(keyboardType);
@@ -29,6 +34,8 @@ class NSTextField extends StatelessWidget {
     return AbsorbPointer(
       absorbing: !isEnabled,
       child: CupertinoTextField.borderless(
+        focusNode: focusNode,
+        autofocus: autofocus,
         placeholder: placeholder,
         suffix: suffix ?? (isEnabled ? actionSuffix : null),
         controller: controller,
