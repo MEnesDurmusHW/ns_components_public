@@ -66,10 +66,10 @@ class _NSButtonState extends State<NSButton> with SingleItemSingleTimeMeasureSiz
   }
 
   Color? getForegroundColor(BuildContext context) {
-    final Color primaryColor = context.theme.primaryColor;
+    final primaryColor = context.theme.primaryColor as CupertinoDynamicColor;
     if (widget._buttonType == _NSButtonTypes.plain) {
       if (enabled) {
-        return widget.color ?? primaryColor;
+        return widget.color ?? primaryColor.resolveFrom(context);
       } else {
         return CupertinoColors.placeholderText.resolveFrom(context);
       }
@@ -80,7 +80,7 @@ class _NSButtonState extends State<NSButton> with SingleItemSingleTimeMeasureSiz
     return backgroundColor != null
         ? context.theme.primaryContrastingColor
         : enabled
-            ? primaryColor
+            ? primaryColor.resolveFrom(context)
             : CupertinoDynamicColor.resolve(CupertinoColors.placeholderText, context);
   }
 
@@ -91,7 +91,7 @@ class _NSButtonState extends State<NSButton> with SingleItemSingleTimeMeasureSiz
       case _NSButtonTypes.plain:
         return null;
       case _NSButtonTypes.tinted:
-        return (widget.color ?? context.theme.primaryColor).withOpacity(0.16);
+        return (widget.color ?? (context.theme.primaryColor as CupertinoDynamicColor).resolveFrom(context)).withOpacity(0.16);
     }
   }
 

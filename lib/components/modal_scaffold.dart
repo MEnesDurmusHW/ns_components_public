@@ -23,6 +23,7 @@ class ModalScaffold extends StatelessWidget {
     return ModalScaffold(
       key: key,
       title: title,
+      trailing: const NSCloseButton(),
       body: body,
     );
   }

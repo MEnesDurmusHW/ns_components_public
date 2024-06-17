@@ -9,6 +9,7 @@ class NSScaffold extends StatefulWidget {
   final Widget? trailing;
   final bool absorbing;
   final Widget? bottom;
+  final ScrollController? scrollController;
   const NSScaffold({
     Key? key,
     required this.title,
@@ -19,6 +20,7 @@ class NSScaffold extends StatefulWidget {
     this.trailing,
     this.absorbing = false,
     this.bottom,
+    this.scrollController,
   }) : super(key: key);
 
   @override
@@ -26,7 +28,7 @@ class NSScaffold extends StatefulWidget {
 }
 
 class _NSScaffoldState extends State<NSScaffold> {
-  final ScrollController _scrollController = ScrollController();
+  late ScrollController _scrollController;
   double? heightOfTitle;
   bool isTitleCentered = false;
   bool get isChildrenCupertinoList => widget.children is List<CupertinoListSection>;
@@ -34,6 +36,7 @@ class _NSScaffoldState extends State<NSScaffold> {
   @override
   void initState() {
     super.initState();
+    _scrollController = widget.scrollController ?? ScrollController();
     _scrollController.addListener(_onScroll);
   }
 
