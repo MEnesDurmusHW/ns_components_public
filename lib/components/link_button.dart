@@ -16,7 +16,7 @@ class LinkButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoButton(
       onPressed: onPressed,
-      child: Text(text),
+      child: Text(text, style: context.secondaryLabel),
     );
   }
 }
