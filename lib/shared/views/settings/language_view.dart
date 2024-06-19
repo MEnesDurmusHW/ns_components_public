@@ -1,7 +1,5 @@
 part of ns_components;
 
-
-
 class LanguageView extends StatelessWidget {
   const LanguageView({super.key});
 
@@ -23,16 +21,16 @@ class LanguageView extends StatelessWidget {
             children: [
               NSListSection(
                 children: [
-                  NSListTile(
-                    title: 'English',
-                    subtitle: _Localization.i.languageEnglish,
+                  CupertinoListTile(
+                    title: const Text('English'),
+                    subtitle: Text(_Localization.i.languageEnglish),
                     trailing: isChecked('en') ? const NSCheckMark() : null,
                     onTap: () => setLanguage('en'),
                   ),
-                  NSListTile(
-                    title: 'Türkçe',
-                    subtitle: _Localization.i.languageTurkish,
-                    trailing: isChecked('tr') ? const Icon(CupertinoIcons.check_mark) : null,
+                  CupertinoListTile(
+                    title: const Text('Türkçe'),
+                    subtitle: Text(_Localization.i.languageTurkish),
+                    trailing: isChecked('tr') ? const NSCheckMark() : null,
                     onTap: () => setLanguage('tr'),
                   ),
                 ],
@@ -42,5 +40,3 @@ class LanguageView extends StatelessWidget {
         });
   }
 }
-
-

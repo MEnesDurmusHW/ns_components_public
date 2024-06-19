@@ -1,6 +1,7 @@
 library ns_components;
 
 import 'dart:math';
+import 'package:collection/collection.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +11,8 @@ import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+import 'package:rate_my_app/rate_my_app.dart';
 
 //Components
 part 'components/bottom_navigation_bar_item.dart';
@@ -49,6 +52,8 @@ part 'managers/database_manager.dart';
 part 'managers/navigation_manager.dart';
 part 'managers/remote_config_manager.dart';
 part 'managers/log_manager.dart';
+part 'managers/brightness_manager.dart';
+part 'managers/rate_app_manager.dart';
 
 //Resources
 part 'resources/colors.dart';
@@ -72,9 +77,13 @@ part 'models/typedefs.dart';
 part 'models/exception.dart';
 
 //Shareds
+part 'shared/models/brightness.dart';
 part 'shared/views/settings/language_view.dart';
 part 'shared/views/settings/language_navigation_link.dart';
-part 'shared/views/settings/brightness_toggle.dart';
+part 'shared/views/settings/brightness_navigation_link.dart';
+part 'shared/views/settings/brightness_view.dart';
+part 'shared/views/settings/feedback_button.dart';
+part 'shared/views/settings/rate_us_button.dart';
 part 'shared/notifiers.dart';
 part 'shared/localization.dart';
 part 'shared/app.dart';

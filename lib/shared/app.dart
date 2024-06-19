@@ -39,4 +39,10 @@ class NSAppViewModel extends BaseViewModel {
   Locale get locale => localeNotifier.value;
 
   bool initialized = false;
+
+  @override
+  void init() async {
+    await brightnessManager.init();
+    super.init();
+  }
 }

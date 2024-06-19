@@ -29,7 +29,15 @@ class NSListTile extends NSStatelessWidget {
     return NSListTile(
       title: title,
       onTap: onTap,
-      trailing: onTap != null ? const CupertinoListTileChevron() : null,
+      trailing: onTap != null
+          ? Builder(builder: (context) {
+              return Icon(
+                CupertinoIcons.chevron_forward,
+                size: CupertinoTheme.of(context).textTheme.textStyle.fontSize,
+                color: CupertinoColors.systemGrey2.resolveFrom(context),
+              );
+            })
+          : null,
       additionalInfo: additionalInfo,
       leading: leading,
     );
