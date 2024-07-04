@@ -5,6 +5,7 @@ extension NSContextExtension on BuildContext {
     if (this is StatefulElement) (this as StatefulElement).markNeedsBuild();
   }
 
+  MediaQueryData get mediaQuery => MediaQuery.of(this);
   CupertinoTextThemeData get textTheme => CupertinoTheme.of(this).textTheme;
   TextStyle get textStyle => textTheme.textStyle;
   CupertinoThemeData get theme => CupertinoTheme.of(this);

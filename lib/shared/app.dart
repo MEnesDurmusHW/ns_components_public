@@ -21,7 +21,11 @@ class NSApp extends StatelessWidget {
         return CupertinoApp(
           debugShowCheckedModeBanner: false,
           navigatorKey: navigator.navigatorKey,
-          theme: CupertinoThemeData(brightness: viewModel.brightness),
+          theme: CupertinoThemeData(
+            brightness: viewModel.brightness,
+            scaffoldBackgroundColor: NSColors.background.resolveFrom(context),
+            barBackgroundColor: NSColors.partiallyTransparentBackground.resolveFrom(context),
+          ),
           home: viewModel.initialized ? NSDefaultTabBarView(views) : const SizedBox.shrink(),
           locale: viewModel.locale,
           supportedLocales: supportedLocales,
@@ -40,9 +44,11 @@ class NSAppViewModel extends BaseViewModel {
 
   bool initialized = false;
 
+  @mustCallSuper
   @override
   void init() async {
     await brightnessManager.init();
+    localeNotifier.value = Locale(Platform.localeName.substring(0, 2));
     super.init();
   }
 }

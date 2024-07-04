@@ -22,6 +22,11 @@ class _ViewModelBuilderState<T extends BaseViewModel> extends State<ViewModelBui
   static final Map<Type, dynamic> _viewModels = {};
   @override
   void initState() {
+    init();
+    super.initState();
+  }
+
+  void init() {
     if (widget.singleton) {
       viewModel = _viewModels[T];
       if (viewModel == null) {
@@ -33,13 +38,20 @@ class _ViewModelBuilderState<T extends BaseViewModel> extends State<ViewModelBui
     }
     viewModel?.init();
     viewModel?.context = context;
-    super.initState();
   }
 
   void disposeViewModel() {
     if (viewModel?.disposed ?? true) return;
     _viewModels.remove(T);
     viewModel?.dispose();
+  }
+
+  @override
+  void didUpdateWidget(ViewModelBuilder<T> oldWidget) {
+    if(widget.singleton) return super.didUpdateWidget(oldWidget);
+    _viewModels.remove(T);
+    super.didUpdateWidget(oldWidget);
+    init();
   }
 
   @override

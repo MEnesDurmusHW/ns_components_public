@@ -65,7 +65,6 @@ class _NSScaffoldState extends State<NSScaffold> {
     return AbsorbPointer(
       absorbing: widget.absorbing,
       child: CupertinoPageScaffold(
-        backgroundColor: NSColors.background,
         child: Stack(
           children: [
             CustomScrollView(
@@ -74,13 +73,10 @@ class _NSScaffoldState extends State<NSScaffold> {
                 CupertinoSliverNavigationBar(
                   border: !isTitleCentered
                       ? null
-                      : Border(
-                          bottom: BorderSide(color: CupertinoColors.systemBackground.withOpacity(0.5)),
-                        ),
+                      : const Border(bottom: BorderSide(color: CupertinoColors.opaqueSeparator)),
                   largeTitle: MeasureSize(onChange: onChange, child: Text(widget.title)),
                   trailing: widget.trailing,
                   automaticallyImplyLeading: false,
-                  backgroundColor: NSColors.partiallyTransparentBackground,
                   transitionBetweenRoutes: false,
                   leading: canPop
                       ? GestureDetector(

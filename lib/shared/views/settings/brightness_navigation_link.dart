@@ -16,7 +16,7 @@ class BrightnessToggle extends StatelessWidget implements NSWidget {
           builder: (_, __, ___) {
             return NSListTile.navigationLink(
               title: _Localization.i.theme,
-              leading: NSFilledIcon(
+              leading: NSFilledIcon.byIcon(
                 CupertinoIcons.circle_lefthalf_fill,
                 color: CupertinoColors.systemIndigo.resolveFrom(context),
               ),

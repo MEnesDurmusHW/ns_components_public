@@ -10,7 +10,7 @@ class RateUsButton extends StatelessWidget {
       builder: (context, locale, _) {
         return NSListTile(
           title: _Localization.i.rateUs,
-          leading: NSFilledIcon(
+          leading: NSFilledIcon.byIcon(
             CupertinoIcons.star_fill,
             color: CupertinoColors.systemYellow.resolveFrom(context),
           ),

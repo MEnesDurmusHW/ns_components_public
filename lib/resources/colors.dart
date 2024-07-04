@@ -1,6 +1,7 @@
 part of ns_components;
 
-mixin NSColors {
+abstract final class NSColors {
+  static const _transparencyRatioHex = 0xAA000000;
   static const background = CupertinoDynamicColor.withBrightness(
     color: Color(0xFFF3F3F9),
     darkColor: Color(0xFF000000),
@@ -10,8 +11,12 @@ mixin NSColors {
     darkColor: Color(0xFF000000),
   );
   static const partiallyTransparentBackground = CupertinoDynamicColor.withBrightness(
-    color: Color(0xEAF3F3F9),
-    darkColor: Color(0xAF000000),
+    color: Color(0xF3F3F9 & _transparencyRatioHex),
+    darkColor: Color(0x000000 & _transparencyRatioHex),
+  );
+  static const partiallyTransparentBackgroundSecondary = CupertinoDynamicColor.withBrightness(
+    color: Color(0xFFFFFF + _transparencyRatioHex),
+    darkColor: Color(0x000000 + _transparencyRatioHex),
   );
   static const actionColor = CupertinoDynamicColor.withBrightness(
     color: Color(0xFF000000),

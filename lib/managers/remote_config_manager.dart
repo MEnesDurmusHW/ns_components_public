@@ -26,6 +26,10 @@ class RemoteConfigManager {
     return _remoteConfig.getString(key);
   }
 
+  String getLocalizedText(String key) {
+    return LocalizedText.fromJson(jsonDecode(getString(key))).text;
+  }
+
   bool getBool(String key) {
     return _remoteConfig.getBool(key);
   }

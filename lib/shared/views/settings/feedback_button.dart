@@ -45,7 +45,7 @@ class _FeedbackButtonState extends State<FeedbackButton> {
           builder: (_, __, ___) {
             return NSListTile(
               title: _Localization.i.feedback,
-              leading: NSFilledIcon(
+              leading: NSFilledIcon.byIcon(
                 CupertinoIcons.mail_solid,
                 color: CupertinoColors.systemGreen.resolveFrom(context),
               ),

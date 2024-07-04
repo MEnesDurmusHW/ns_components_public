@@ -8,13 +8,15 @@ class NSDefaultTabBarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NSTabBar(
+    return CupertinoTabScaffold(
       tabBuilder: tabBuilder,
-      items: [
-        NSBottomNavigationBarItem(icon: CupertinoIcons.house_fill),
-        NSBottomNavigationBarItem(icon: CupertinoIcons.square_grid_2x2_fill),
-        NSBottomNavigationBarItem(icon: CupertinoIcons.gear_alt_fill),
-      ],
+      tabBar: CupertinoTabBar(
+        items: [
+          NSBottomNavigationBarItem(icon: CupertinoIcons.house_fill),
+          NSBottomNavigationBarItem(icon: CupertinoIcons.square_grid_2x2_fill),
+          NSBottomNavigationBarItem(icon: CupertinoIcons.gear_alt_fill),
+        ],
+      ),
     );
   }
 }

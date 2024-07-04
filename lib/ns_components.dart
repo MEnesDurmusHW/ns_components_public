@@ -1,5 +1,7 @@
 library ns_components;
 
+import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 import 'package:collection/collection.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -14,6 +16,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:rate_my_app/rate_my_app.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 //Components
 part 'components/bottom_navigation_bar_item.dart';
@@ -36,8 +39,11 @@ part 'components/text_field.dart';
 part 'components/ring_chart.dart';
 part 'components/empty_state_widget.dart';
 part 'components/disposable_section.dart';
+part 'components/preview_section.dart';
 part 'components/picker_page.dart';
 part 'components/link_button.dart';
+part 'components/image.dart';
+part 'components/on_boarding.dart';
 part 'components/helperComponents/measure_size.dart';
 part 'components/helperComponents/default_enabled_widget.dart';
 part 'components/subComponents/int_text_field_suffix.dart';
@@ -77,6 +83,7 @@ part 'utils/base_repository.dart';
 //Models
 part 'models/typedefs.dart';
 part 'models/exception.dart';
+part 'models/localized_text.dart';
 
 //Shareds
 part 'shared/models/brightness.dart';

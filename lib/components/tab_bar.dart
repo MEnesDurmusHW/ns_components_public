@@ -7,10 +7,20 @@ class NSTabBar extends CupertinoTabScaffold {
     required Widget Function(BuildContext, int) tabBuilder,
   }) : super(
           tabBuilder: tabBuilder,
-          backgroundColor: NSColors.background,
-          tabBar: CupertinoTabBar(
-            items: items,
-            backgroundColor: NSColors.partiallyTransparentBackground,
-          ),
+          tabBar: CupertinoTabBar(items: items),
         );
 }
+
+// class NSTabBar extends StatelessWidget {
+//   final List<NSBottomNavigationBarItem> items;
+//   final Widget Function(BuildContext, int) tabBuilder;
+//   const NSTabBar({super.key, required this.items, required this.tabBuilder});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return CupertinoTabScaffold(
+//       tabBuilder: tabBuilder,
+//       tabBar: CupertinoTabBar(items: items),
+//     );
+//   }
+// }

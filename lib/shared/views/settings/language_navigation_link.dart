@@ -10,9 +10,9 @@ class LangaugeNavigationLink extends StatelessWidget {
         builder: (context, locale, _) {
           return NSListTile.navigationLink(
             title: _Localization.i.languageTitle,
-            leading: const NSFilledIcon(
+            leading: NSFilledIcon.byIcon(
               CupertinoIcons.globe,
-              color: CupertinoColors.activeBlue,
+              color: CupertinoColors.activeBlue.resolveFrom(context),
             ),
             additionalInfo: Text(_Localization.i.currentLanguageDisplay),
             onTap: () => navigator.to(const LanguageView()),
