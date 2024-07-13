@@ -14,29 +14,30 @@ class LanguageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-        valueListenable: nsLocaleNotifier,
-        builder: (context, locale, _) {
-          return NSScaffold(
-            title: _Localization.i.languageTitle,
-            children: [
-              NSListSection(
-                children: [
-                  CupertinoListTile(
-                    title: const Text('English'),
-                    subtitle: Text(_Localization.i.languageEnglish),
-                    trailing: isChecked('en') ? const NSCheckMark() : null,
-                    onTap: () => setLanguage('en'),
-                  ),
-                  CupertinoListTile(
-                    title: const Text('Türkçe'),
-                    subtitle: Text(_Localization.i.languageTurkish),
-                    trailing: isChecked('tr') ? const NSCheckMark() : null,
-                    onTap: () => setLanguage('tr'),
-                  ),
-                ],
-              ),
-            ],
-          );
-        });
+      valueListenable: nsLocaleNotifier,
+      builder: (context, locale, _) {
+        return NSScaffold(
+          title: _Localization.i.languageTitle,
+          children: [
+            NSListSection(
+              children: [
+                CupertinoListTile(
+                  title: const Text('English'),
+                  subtitle: Text(_Localization.i.languageEnglish),
+                  trailing: isChecked('en') ? const NSCheckMark() : null,
+                  onTap: () => setLanguage('en'),
+                ),
+                CupertinoListTile(
+                  title: const Text('Türkçe'),
+                  subtitle: Text(_Localization.i.languageTurkish),
+                  trailing: isChecked('tr') ? const NSCheckMark() : null,
+                  onTap: () => setLanguage('tr'),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
   }
 }

@@ -1,7 +1,8 @@
 part of ns_components;
 
 class BrightnessView extends StatelessWidget {
-  const BrightnessView({super.key});
+  final String? title;
+  const BrightnessView({super.key, this.title});
 
   Widget? trailing(NSBrightness brightness) {
     return nsInternalBrightnessNotifier.value == brightness ? const NSCheckMark() : null;
@@ -20,7 +21,7 @@ class BrightnessView extends StatelessWidget {
           valueListenable: nsInternalBrightnessNotifier,
           builder: (context, brightness, _) {
             return NSScaffold(
-              title: _Localization.i.theme,
+              title: title ?? _Localization.i.theme,
               children: [
                 NSListSection(
                   children: NSBrightness.values

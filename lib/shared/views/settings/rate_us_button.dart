@@ -1,7 +1,8 @@
 part of '../../../ns_components.dart';
 
 class RateUsButton extends StatelessWidget {
-  const RateUsButton({super.key});
+  final String? title;
+  const RateUsButton({super.key, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +10,7 @@ class RateUsButton extends StatelessWidget {
       valueListenable: nsLocaleNotifier,
       builder: (context, locale, _) {
         return NSListTile(
-          title: _Localization.i.rateUs,
+          title: title ?? _Localization.i.rateUs,
           leading: NSFilledIcon.byIcon(
             CupertinoIcons.star_fill,
             color: CupertinoColors.systemYellow.resolveFrom(context),

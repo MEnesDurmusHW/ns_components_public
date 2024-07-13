@@ -2,7 +2,8 @@ part of ns_components;
 
 class FeedbackButton extends StatefulWidget implements NSWidget {
   final String? mailSubject;
-  const FeedbackButton({super.key, this.mailSubject});
+  final String? title;
+  const FeedbackButton({super.key, this.mailSubject, this.title});
 
   static Future<bool> checkCanLaunchUrl([String? mailSubject]) {
     try {
@@ -44,7 +45,7 @@ class _FeedbackButtonState extends State<FeedbackButton> {
           valueListenable: nsInternalBrightnessNotifier,
           builder: (_, __, ___) {
             return NSListTile(
-              title: _Localization.i.feedback,
+              title: widget.title ?? _Localization.i.feedback,
               leading: NSFilledIcon.byIcon(
                 CupertinoIcons.mail_solid,
                 color: CupertinoColors.systemGreen.resolveFrom(context),
