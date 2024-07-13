@@ -1,7 +1,7 @@
 part of ns_components;
 
 abstract final class NSColors {
-  static const _transparencyRatioHex = 0xAA000000;
+  static const _transparencyRatioHex = 0x9F000000;
   static const background = CupertinoDynamicColor.withBrightness(
     color: Color(0xFFF3F3F9),
     darkColor: Color(0xFF000000),
@@ -11,8 +11,8 @@ abstract final class NSColors {
     darkColor: Color(0xFF000000),
   );
   static const partiallyTransparentBackground = CupertinoDynamicColor.withBrightness(
-    color: Color(0xF3F3F9 & _transparencyRatioHex),
-    darkColor: Color(0x000000 & _transparencyRatioHex),
+    color: Color(0xF3F3F9 + _transparencyRatioHex),
+    darkColor: Color(0x000000 + _transparencyRatioHex),
   );
   static const partiallyTransparentBackgroundSecondary = CupertinoDynamicColor.withBrightness(
     color: Color(0xFFFFFF + _transparencyRatioHex),

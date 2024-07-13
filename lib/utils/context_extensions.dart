@@ -9,6 +9,7 @@ extension NSContextExtension on BuildContext {
   CupertinoTextThemeData get textTheme => CupertinoTheme.of(this).textTheme;
   TextStyle get textStyle => textTheme.textStyle;
   CupertinoThemeData get theme => CupertinoTheme.of(this);
+  CupertinoDynamicColor get primaryColor => theme.primaryColor as CupertinoDynamicColor;
 
   // AppLocalizations get localized => AppLocalizations.of(this)!;
   double get width => MediaQuery.of(this).size.width;
@@ -16,7 +17,7 @@ extension NSContextExtension on BuildContext {
 }
 
 extension NSContextTextStyleExtensions on BuildContext {
-  TextStyle get secondaryLabel => theme.textTheme.textStyle
-      .merge(TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(this)));
+  TextStyle get secondaryLabel =>
+      theme.textTheme.textStyle.merge(TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(this)));
   TextStyle get subtitle => textTheme.navTitleTextStyle;
 }
