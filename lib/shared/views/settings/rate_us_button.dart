@@ -6,7 +6,7 @@ class RateUsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: localeNotifier,
+      valueListenable: nsLocaleNotifier,
       builder: (context, locale, _) {
         return NSListTile(
           title: _Localization.i.rateUs,

@@ -9,10 +9,10 @@ class BrightnessToggle extends StatelessWidget implements NSWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: localeNotifier,
+      valueListenable: nsLocaleNotifier,
       builder: (_, __, ___) {
         return ValueListenableBuilder(
-          valueListenable: internalBrightnessNotifier,
+          valueListenable: nsInternalBrightnessNotifier,
           builder: (_, __, ___) {
             return NSListTile.navigationLink(
               title: _Localization.i.theme,
@@ -20,7 +20,7 @@ class BrightnessToggle extends StatelessWidget implements NSWidget {
                 CupertinoIcons.circle_lefthalf_fill,
                 color: CupertinoColors.systemIndigo.resolveFrom(context),
               ),
-              additionalInfo: Text(internalBrightnessNotifier.value.localizedText),
+              additionalInfo: Text(nsInternalBrightnessNotifier.value.localizedText),
               onTap: () => navigator.to(const BrightnessView()),
             );
           },

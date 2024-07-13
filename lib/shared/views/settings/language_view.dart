@@ -4,17 +4,17 @@ class LanguageView extends StatelessWidget {
   const LanguageView({super.key});
 
   bool isChecked(String languageCode) {
-    return localeNotifier.value.languageCode == languageCode;
+    return nsLocaleNotifier.value.languageCode == languageCode;
   }
 
   void setLanguage(String languageCode) {
-    localeNotifier.value = Locale(languageCode);
+    nsLocaleNotifier.value = Locale(languageCode);
   }
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-        valueListenable: localeNotifier,
+        valueListenable: nsLocaleNotifier,
         builder: (context, locale, _) {
           return NSScaffold(
             title: _Localization.i.languageTitle,

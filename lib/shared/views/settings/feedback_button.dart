@@ -38,10 +38,10 @@ class _FeedbackButtonState extends State<FeedbackButton> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: localeNotifier,
+      valueListenable: nsLocaleNotifier,
       builder: (_, __, ___) {
         return ValueListenableBuilder(
-          valueListenable: internalBrightnessNotifier,
+          valueListenable: nsInternalBrightnessNotifier,
           builder: (_, __, ___) {
             return NSListTile(
               title: _Localization.i.feedback,

@@ -26,29 +26,9 @@ class _Localization {
   );
 
   static const _Localization _english = _Localization(
-    'Language',
-    'English',
-    'Turkish',
-    'English',
-    'Theme',
-    'Automatic',
-    'Light',
-    'Dark',
-    'Feedback',
-    'Rate Us'
-  );
-  static const _Localization _turkish = _Localization(
-    'Dil',
-    'İngilizce',
-    'Türkçe',
-    'Türkçe',
-    'Tema',
-    'Otomatik',
-    'Aydınlık',
-    'Karanlık',
-    'Bize Yazın',
-    'Bizi Değerlendir'
-  );
+      'Language', 'English', 'Turkish', 'English', 'Theme', 'Automatic', 'Light', 'Dark', 'Feedback', 'Rate Us');
+  static const _Localization _turkish = _Localization('Dil', 'İngilizce', 'Türkçe', 'Türkçe', 'Tema', 'Otomatik',
+      'Aydınlık', 'Karanlık', 'Bize Yazın', 'Bizi Değerlendir');
 
-  static _Localization get i => localeNotifier.value.languageCode == 'en' ? _english : _turkish;
+  static _Localization get i => nsLocaleNotifier.value.languageCode == 'en' ? _english : _turkish;
 }

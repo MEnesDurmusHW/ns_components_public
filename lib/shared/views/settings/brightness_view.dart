@@ -4,7 +4,7 @@ class BrightnessView extends StatelessWidget {
   const BrightnessView({super.key});
 
   Widget? trailing(NSBrightness brightness) {
-    return internalBrightnessNotifier.value == brightness ? const NSCheckMark() : null;
+    return nsInternalBrightnessNotifier.value == brightness ? const NSCheckMark() : null;
   }
 
   void setBrightness(NSBrightness brightness) {
@@ -14,10 +14,10 @@ class BrightnessView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: localeNotifier,
+      valueListenable: nsLocaleNotifier,
       builder: (context, locale, _) {
         return ValueListenableBuilder(
-          valueListenable: internalBrightnessNotifier,
+          valueListenable: nsInternalBrightnessNotifier,
           builder: (context, brightness, _) {
             return NSScaffold(
               title: _Localization.i.theme,

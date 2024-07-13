@@ -6,7 +6,7 @@ class LangaugeNavigationLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-        valueListenable: localeNotifier,
+        valueListenable: nsLocaleNotifier,
         builder: (context, locale, _) {
           return NSListTile.navigationLink(
             title: _Localization.i.languageTitle,

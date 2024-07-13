@@ -21,5 +21,5 @@ class LocalizedText {
         'en': en,
       };
 
-  String get text => localeNotifier.value.languageCode == 'en' ? en : tr;
+  String get text => nsLocaleNotifier.value.languageCode == 'en' ? en : tr;
 }
