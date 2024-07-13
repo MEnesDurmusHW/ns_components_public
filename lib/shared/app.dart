@@ -48,7 +48,6 @@ class NSAppViewModel extends BaseViewModel {
   @override
   void init() async {
     await brightnessManager.init();
-    nsLocaleNotifier.value = Locale(Platform.localeName.substring(0, 2));
     super.init();
   }
 }
