@@ -8,7 +8,7 @@ class LanguageView extends StatelessWidget {
   }
 
   void setLanguage(String languageCode) {
-    nsLocaleNotifier.value = Locale(languageCode);
+    localizationManager.setLocale(languageCode);
   }
 
   @override
