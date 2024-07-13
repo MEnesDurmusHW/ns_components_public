@@ -5,14 +5,14 @@ class NSListSection extends StatelessWidget {
   final String? title;
   final bool bigTitle;
   final String? footerText;
-  final bool hasPadding;
+  final EdgeInsets? padding;
   final bool isScrollable;
   const NSListSection({
     super.key,
     required this.children,
     this.title,
     this.footerText,
-    this.hasPadding = true,
+    this.padding,
     this.bigTitle = false,
     this.isScrollable = false,
   });
@@ -23,7 +23,9 @@ class NSListSection extends StatelessWidget {
   bool get isNSWidget => children.first is NSWidget;
 
   double get additionalDividerMargin {
-    return hasLeading || isNSWidget ? 28 + (children.first is NSWidget ? (children.first as NSWidget).padding.left : 20.0) + 4.0 : 5.0;
+    return hasLeading || isNSWidget
+        ? 28 + (children.first is NSWidget ? (children.first as NSWidget).padding.left : 20.0) + 4.0
+        : 5.0;
   }
 
   @override
@@ -38,7 +40,7 @@ class NSListSection extends StatelessWidget {
             ));
 
     return Padding(
-      padding: NSPaddings.insetGroupedPadding,
+      padding: padding ?? NSPaddings.insetGroupedPadding,
       child: ListView(
         padding: EdgeInsets.zero,
         shrinkWrap: true,
@@ -46,7 +48,8 @@ class NSListSection extends StatelessWidget {
         children: [
           if (hasTitle)
             Padding(
-              padding: EdgeInsets.only(left: bigTitle ? 0.0 : NSPaddingTypes.m, bottom: bigTitle ? NSPaddingTypes.s : NSPaddingTypes.xs),
+              padding: EdgeInsets.only(
+                  left: bigTitle ? 0.0 : NSPaddingTypes.m, bottom: bigTitle ? NSPaddingTypes.s : NSPaddingTypes.xs),
               child: Text(
                 title!,
                 style: CupertinoTheme.of(context).textTheme.textStyle.merge(headerFooterTextStyle),

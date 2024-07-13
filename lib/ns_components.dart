@@ -1,7 +1,6 @@
 library ns_components;
 
 import 'dart:convert';
-import 'dart:io';
 import 'dart:math';
 import 'package:collection/collection.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
