@@ -61,6 +61,7 @@ part 'managers/navigation_manager.dart';
 part 'managers/remote_config_manager.dart';
 part 'managers/log_manager.dart';
 part 'managers/brightness_manager.dart';
+part 'managers/localization_manager.dart';
 part 'managers/rate_app_manager.dart';
 
 //Resources

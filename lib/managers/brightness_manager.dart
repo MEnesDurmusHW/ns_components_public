@@ -12,7 +12,7 @@ class BrightnessManager {
     return setBrighness(NSBrightness.fromString(rawValue));
   }
 
-  void setBrighness(NSBrightness brightness) {
+  Future<void> setBrighness(NSBrightness brightness) async {
     nsInternalBrightnessNotifier.value = brightness;
     if (brightness == NSBrightness.auto) {
       nsBrightnessNotifier.value = WidgetsBinding.instance.platformDispatcher.platformBrightness;
@@ -20,8 +20,8 @@ class BrightnessManager {
     } else {
       nsBrightnessNotifier.value = brightness.toBrightness!;
     }
-    SharedPreferences.getInstance()
-        .then((sp) => sp.setString(brightness.runtimeType.toString(), nsInternalBrightnessNotifier.value.name));
+    final sp = await SharedPreferences.getInstance();
+    await sp.setString(brightness.runtimeType.toString(), nsInternalBrightnessNotifier.value.name);
   }
 
   void listenBrightness() {
