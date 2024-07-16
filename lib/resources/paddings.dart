@@ -15,6 +15,7 @@ mixin NSPaddings {
     NSPaddingTypes.m,
     NSPaddingTypes.m,
   );
+  static const defaultPadding = EdgeInsets.all(NSPaddingTypes.m);
   static const itemInsidePadding = EdgeInsets.symmetric(
     horizontal: NSPaddingTypes.m,
     vertical: NSPaddingTypes.s,
