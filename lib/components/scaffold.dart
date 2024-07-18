@@ -7,6 +7,7 @@ class NSScaffold extends StatefulWidget {
   final bool isNavTitleHidden;
   final TextStyle? navLargeTitleTextStyle;
   final Widget? trailing;
+  final Widget? leading;
   final bool absorbing;
   final Widget? bottom;
   final ScrollController? scrollController;
@@ -18,6 +19,7 @@ class NSScaffold extends StatefulWidget {
     this.isNavTitleHidden = false,
     this.navLargeTitleTextStyle,
     this.trailing,
+    this.leading,
     this.absorbing = false,
     this.bottom,
     this.scrollController,
@@ -78,16 +80,17 @@ class _NSScaffoldState extends State<NSScaffold> {
                   trailing: widget.trailing,
                   automaticallyImplyLeading: false,
                   transitionBetweenRoutes: false,
-                  leading: canPop
-                      ? GestureDetector(
-                          onTap: () => Navigator.pop(context),
-                          child: Icon(
-                            CupertinoIcons.arrow_left,
-                            color: CupertinoColors.label.resolveFrom(context),
-                            size: 26,
-                          ),
-                        )
-                      : null,
+                  leading: widget.leading ??
+                      (canPop
+                          ? GestureDetector(
+                              onTap: () => Navigator.pop(context),
+                              child: Icon(
+                                CupertinoIcons.arrow_left,
+                                color: CupertinoColors.label.resolveFrom(context),
+                                size: 26,
+                              ),
+                            )
+                          : null),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.only(top: 4.0),
