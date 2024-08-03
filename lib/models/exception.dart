@@ -8,8 +8,8 @@ class NSException {
 
   factory NSException.fromJson(Map<String, dynamic> json) {
     return NSException(
-      code: json['code'] as String,
-      message: json['message'] as String,
+      code: json['code'] ?? NSExceptionCodes.unparsableException,
+      message: json['message'] ?? json.toString(),
     );
   }
 
