@@ -11,8 +11,9 @@ class NSScaffold extends StatefulWidget {
   final bool absorbing;
   final Widget? bottom;
   final ScrollController? scrollController;
+  final bool automaticallyImplyLeading;
   const NSScaffold({
-    Key? key,
+    super.key,
     required this.title,
     required this.children,
     this.isBusy = false,
@@ -23,7 +24,8 @@ class NSScaffold extends StatefulWidget {
     this.absorbing = false,
     this.bottom,
     this.scrollController,
-  }) : super(key: key);
+    this.automaticallyImplyLeading = true,
+  });
 
   @override
   State<NSScaffold> createState() => _NSScaffoldState();
@@ -81,7 +83,7 @@ class _NSScaffoldState extends State<NSScaffold> {
                   automaticallyImplyLeading: false,
                   transitionBetweenRoutes: false,
                   leading: widget.leading ??
-                      (canPop
+                      (canPop && widget.automaticallyImplyLeading
                           ? GestureDetector(
                               onTap: () => Navigator.pop(context),
                               child: Icon(

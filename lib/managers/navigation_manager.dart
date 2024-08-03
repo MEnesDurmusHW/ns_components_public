@@ -2,29 +2,55 @@ part of ns_components;
 
 final navigator = NavigationManager._();
 
-class NavigationManager {
+final class NavigationManager {
   NavigationManager._();
   final _navigatorKey = GlobalKey<NavigatorState>();
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
   BuildContext get context => navigatorKey.currentState!.overlay!.context;
 
-  Future<T?> navigateTo<T, R>(Widget route, {bool replace = false, R? pushReplacementResult}) {
+  Future<T?> navigateTo<T, R>(
+    Widget route, {
+    bool replace = false,
+    R? pushReplacementResult,
+    BuildContext? context,
+  }) {
+    context ??= this.context;
     final cupertinoRoute = CupertinoPageRoute<T>(builder: (_) => route);
     final navigator = Navigator.of(context);
-    return replace ? navigator.pushReplacement<T?, R>(cupertinoRoute, result: pushReplacementResult) : navigator.push<T?>(cupertinoRoute);
+    return replace
+        ? navigator.pushReplacement<T?, R>(cupertinoRoute, result: pushReplacementResult)
+        : navigator.push<T?>(cupertinoRoute);
   }
 
-  Future<T?> to<T, R>(Widget route, {bool replace = false, R? pushReplacementResult}) {
-    return navigateTo(route, replace: replace, pushReplacementResult: pushReplacementResult);
+  Future<T?> to<T, R>(
+    Widget route, {
+    bool replace = false,
+    R? pushReplacementResult,
+    BuildContext? context,
+  }) {
+    return navigateTo(
+      route,
+      replace: replace,
+      pushReplacementResult: pushReplacementResult,
+      context: context,
+    );
   }
 
-  void goBack<T>([T? result]) {
+  void goBack<T>([
+    T? result,
+    BuildContext? context,
+  ]) {
+    context ??= this.context;
     if (Navigator.canPop(context)) Navigator.pop(context, result);
   }
 
-  void goBackTwice<T>([T? result]) {
-    goBack();
-    goBack(result);
+  void goBackTwice<T>([
+    T? result,
+    BuildContext? context,
+  ]) {
+    context ??= this.context;
+    goBack(null, context);
+    goBack(result, context);
   }
 
   Future<T?> showModalBottomSheet<T>({
@@ -48,7 +74,9 @@ class NavigationManager {
     required String confirmText,
     String? cancelText,
     bool isConfirmDestructive = false,
+    BuildContext? context,
   }) async {
+    context ??= this.context;
     return (await showCupertinoDialog<bool?>(
           context: context,
           builder: (BuildContext context) {
@@ -75,7 +103,13 @@ class NavigationManager {
         false;
   }
 
-  Future<void> simpleDialog({String? title, Widget? content, required String confirmText}) async {
+  Future<void> simpleDialog({
+    String? title,
+    Widget? content,
+    required String confirmText,
+    BuildContext? context,
+  }) async {
+    context ??= this.context;
     return showCupertinoDialog(
       context: context,
       builder: (BuildContext context) {
@@ -93,4 +127,9 @@ class NavigationManager {
       },
     );
   }
+}
+
+extension NSNavigationBuildContextExtension on BuildContext {
+  NavigatorState get navigatorState => Navigator.of(this);
+  void pop([result]) => navigatorState.maybePop(result);
 }
