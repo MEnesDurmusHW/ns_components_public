@@ -6,10 +6,10 @@ class LocalizationManager {
   LocalizationManager._();
   final _key = 'nsLocaleNotifier';
 
-  Future<void> init() async {
+  Future<void> init({String defaultLanguageCode = 'en'}) async {
     final sp = await SharedPreferences.getInstance();
     final languageCode = sp.getString(_key);
-    return setLocale(languageCode ?? 'en');
+    return setLocale(languageCode ?? defaultLanguageCode);
   }
 
   Future<void> setLocale(String languageCode) async {

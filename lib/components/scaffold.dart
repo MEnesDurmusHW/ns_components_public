@@ -77,7 +77,7 @@ class _NSScaffoldState extends State<NSScaffold> {
                 CupertinoSliverNavigationBar(
                   border: !isTitleCentered
                       ? null
-                      : const Border(bottom: BorderSide(color: CupertinoColors.opaqueSeparator)),
+                      : Border(bottom: BorderSide(color: CupertinoColors.opaqueSeparator.resolveFrom(context))),
                   largeTitle: MeasureSize(onChange: onChange, child: Text(widget.title)),
                   trailing: widget.trailing,
                   automaticallyImplyLeading: false,

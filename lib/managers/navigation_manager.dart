@@ -87,11 +87,11 @@ final class NavigationManager {
                 if (cancelText != null)
                   CupertinoDialogAction(
                     isDefaultAction: isConfirmDestructive,
-                    onPressed: () => goBack(false),
+                    onPressed: () => goBack(false, context),
                     child: Text(cancelText),
                   ),
                 CupertinoDialogAction(
-                  onPressed: () => goBack(true),
+                  onPressed: () => goBack(true, context),
                   isDestructiveAction: isConfirmDestructive,
                   isDefaultAction: !isConfirmDestructive,
                   child: Text(confirmText),
@@ -112,13 +112,13 @@ final class NavigationManager {
     context ??= this.context;
     return showCupertinoDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (BuildContext _context) {
         return CupertinoAlertDialog(
           title: title != null ? Text(title) : null,
           content: content,
           actions: [
             CupertinoDialogAction(
-              onPressed: goBack,
+              onPressed: () => goBack(null, context),
               isDefaultAction: true,
               child: Text(confirmText),
             ),
