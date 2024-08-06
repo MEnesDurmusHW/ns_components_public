@@ -32,7 +32,7 @@ class NSListSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (children.isEmpty) return const SizedBox.shrink();
+    if (children.isEmpty && emptyStateWidget == null) return const SizedBox.shrink();
     final headerFooterTextStyle = bigTitle
         ? context.textTheme.navTitleTextStyle
         : CupertinoTheme.of(context).textTheme.textStyle.merge(TextStyle(
