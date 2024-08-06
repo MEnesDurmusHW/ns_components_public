@@ -7,6 +7,7 @@ class NSListSection extends StatelessWidget {
   final String? footerText;
   final EdgeInsets? padding;
   final bool isScrollable;
+  final Widget? emptyStateWidget;
   const NSListSection({
     super.key,
     required this.children,
@@ -15,6 +16,7 @@ class NSListSection extends StatelessWidget {
     this.padding,
     this.bigTitle = false,
     this.isScrollable = false,
+    this.emptyStateWidget,
   });
 
   bool get hasTitle => title != null;
@@ -63,6 +65,7 @@ class NSListSection extends StatelessWidget {
             hasLeading: hasLeading,
             children: children,
           ),
+          if (children.isEmpty && emptyStateWidget != null) emptyStateWidget!,
           if (hasFooter)
             Padding(
               padding: const EdgeInsets.only(left: NSPaddingTypes.m, top: NSPaddingTypes.xs),
