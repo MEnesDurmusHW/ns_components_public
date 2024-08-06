@@ -66,7 +66,11 @@ class NSListSection extends StatelessWidget {
               hasLeading: hasLeading,
               children: children,
             ),
-          if (children.isEmpty && emptyStateWidget != null) emptyStateWidget!,
+          if (children.isEmpty && emptyStateWidget != null)
+            Padding(
+              padding: const EdgeInsets.only(top: NSPaddingTypes.m),
+              child: emptyStateWidget!,
+            ),
           if (hasFooter)
             Padding(
               padding: const EdgeInsets.only(left: NSPaddingTypes.m, top: NSPaddingTypes.xs),

@@ -10,7 +10,7 @@ class NSEmptyStateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding ?? NSPaddings.insetGroupedPadding,
+      padding: padding ?? NSPaddings.insetPadding,
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
