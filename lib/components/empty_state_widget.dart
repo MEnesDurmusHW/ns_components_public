@@ -4,12 +4,13 @@ class NSEmptyStateWidget extends StatelessWidget {
   final Widget? icon;
   final String text;
   final Widget? bottomWidget;
-  const NSEmptyStateWidget({super.key, this.icon, required this.text, this.bottomWidget});
+  final EdgeInsets? padding;
+  const NSEmptyStateWidget({super.key, this.icon, required this.text, this.bottomWidget, this.padding});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: NSPaddings.insetPadding,
+      padding: padding ?? NSPaddings.insetGroupedPadding,
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,

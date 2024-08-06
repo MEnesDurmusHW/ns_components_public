@@ -57,14 +57,15 @@ class NSListSection extends StatelessWidget {
                 style: CupertinoTheme.of(context).textTheme.textStyle.merge(headerFooterTextStyle),
               ),
             ),
-          CupertinoListSection.insetGrouped(
-            backgroundColor: CupertinoColors.systemGroupedBackground,
-            topMargin: 0,
-            margin: EdgeInsets.zero,
-            additionalDividerMargin: additionalDividerMargin,
-            hasLeading: hasLeading,
-            children: children,
-          ),
+          if (children.isNotEmpty)
+            CupertinoListSection.insetGrouped(
+              backgroundColor: CupertinoColors.systemGroupedBackground,
+              topMargin: 0,
+              margin: EdgeInsets.zero,
+              additionalDividerMargin: additionalDividerMargin,
+              hasLeading: hasLeading,
+              children: children,
+            ),
           if (children.isEmpty && emptyStateWidget != null) emptyStateWidget!,
           if (hasFooter)
             Padding(
