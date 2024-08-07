@@ -36,8 +36,8 @@ class _ViewModelBuilderState<T extends BaseViewModel> extends State<ViewModelBui
     } else {
       viewModel = widget.viewModelBuilder();
     }
-    viewModel?.init();
     viewModel?.context = context;
+    viewModel?.init();
   }
 
   void disposeViewModel() {
