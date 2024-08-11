@@ -3,7 +3,7 @@ part of '../ns_components.dart';
 class NSListSection extends StatelessWidget {
   final List<Widget> children;
   final String? title;
-  final bool bigTitle;
+  final bool? bigTitle;
   final String? footerText;
   final EdgeInsets? padding;
   final bool isScrollable;
@@ -14,7 +14,7 @@ class NSListSection extends StatelessWidget {
     this.title,
     this.footerText,
     this.padding,
-    this.bigTitle = false,
+    this.bigTitle,
     this.isScrollable = false,
     this.emptyStateWidget,
   });
@@ -25,21 +25,25 @@ class NSListSection extends StatelessWidget {
   bool get isNSWidget => children.first is NSWidget;
 
   double get additionalDividerMargin {
-    return hasLeading || isNSWidget
+    return hasLeading
         ? 28 + (children.first is NSWidget ? (children.first as NSWidget).padding.left : 20.0) + 4.0
         : 5.0;
   }
 
+  bool isTitleBig(BuildContext context) => bigTitle ?? DefaultBigTitle.isBigTitle(context);
+
   @override
   Widget build(BuildContext context) {
     if (children.isEmpty && emptyStateWidget == null) return const SizedBox.shrink();
-    final headerFooterTextStyle = bigTitle
+    final headerFooterTextStyle = isTitleBig(context)
         ? context.textTheme.navTitleTextStyle
-        : CupertinoTheme.of(context).textTheme.textStyle.merge(TextStyle(
+        : context.textStyle.merge(
+            TextStyle(
               fontSize: 15.0,
               fontWeight: FontWeight.w300,
               color: CupertinoDynamicColor.resolve(NSColors.kHeaderFooterColor, context),
-            ));
+            ),
+          );
 
     return Padding(
       padding: padding ?? NSPaddings.insetGroupedPadding,
@@ -51,10 +55,11 @@ class NSListSection extends StatelessWidget {
           if (hasTitle)
             Padding(
               padding: EdgeInsets.only(
-                  left: bigTitle ? 0.0 : NSPaddingTypes.m, bottom: bigTitle ? NSPaddingTypes.s : NSPaddingTypes.xs),
+                  left: isTitleBig(context) ? 0.0 : NSPaddingTypes.m,
+                  bottom: isTitleBig(context) ? NSPaddingTypes.s : NSPaddingTypes.xs),
               child: Text(
                 title!,
-                style: CupertinoTheme.of(context).textTheme.textStyle.merge(headerFooterTextStyle),
+                style: context.textStyle.merge(headerFooterTextStyle),
               ),
             ),
           if (children.isNotEmpty)
@@ -76,11 +81,30 @@ class NSListSection extends StatelessWidget {
               padding: const EdgeInsets.only(left: NSPaddingTypes.m, top: NSPaddingTypes.xs),
               child: Text(
                 footerText!,
-                style: CupertinoTheme.of(context).textTheme.textStyle.merge(headerFooterTextStyle),
+                style: context.textStyle.merge(headerFooterTextStyle),
               ),
             ),
         ],
       ),
     );
+  }
+}
+
+class DefaultBigTitle extends InheritedWidget {
+  const DefaultBigTitle({
+    super.key,
+    required super.child,
+    required this.bigTitle,
+  });
+
+  final bool bigTitle;
+
+  static bool isBigTitle(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<DefaultBigTitle>()?.bigTitle ?? false;
+  }
+
+  @override
+  bool updateShouldNotify(DefaultBigTitle oldWidget) {
+    return true;
   }
 }
