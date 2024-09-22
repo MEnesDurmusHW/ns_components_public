@@ -1,6 +1,7 @@
 library ns_components;
 
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 import 'package:collection/collection.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -43,6 +44,8 @@ part 'components/picker_page.dart';
 part 'components/link_button.dart';
 part 'components/image.dart';
 part 'components/on_boarding.dart';
+part 'components/gradient_background_widget.dart';
+part 'components/unfocusable_widget.dart';
 part 'components/helperComponents/measure_size.dart';
 part 'components/helperComponents/default_enabled_widget.dart';
 part 'components/subComponents/int_text_field_suffix.dart';
@@ -79,6 +82,7 @@ part 'utils/state.dart';
 part 'utils/view_model.dart';
 part 'utils/reactive.dart';
 part 'utils/base_repository.dart';
+part 'utils/input_formatters.dart';
 
 //Models
 part 'models/typedefs.dart';

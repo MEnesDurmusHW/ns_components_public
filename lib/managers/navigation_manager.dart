@@ -9,17 +9,25 @@ final class NavigationManager {
   BuildContext get context => navigatorKey.currentState!.overlay!.context;
 
   Future<T?> navigateTo<T, R>(
-    Widget route, {
+    Widget view, {
     bool replace = false,
     R? pushReplacementResult,
     BuildContext? context,
+    bool clearStack = false,
+    bool Function(Route<dynamic>)? predicate,
   }) {
     context ??= this.context;
-    final cupertinoRoute = CupertinoPageRoute<T>(builder: (_) => route);
-    final navigator = Navigator.of(context);
-    return replace
-        ? navigator.pushReplacement<T?, R>(cupertinoRoute, result: pushReplacementResult)
-        : navigator.push<T?>(cupertinoRoute);
+    final route = CupertinoPageRoute<T>(
+        builder: (_) => view,
+        settings: RouteSettings(
+          name: view.runtimeType.toString(),
+        ));
+    final navigatorState = Navigator.of(context);
+    return clearStack
+        ? navigatorState.pushAndRemoveUntil(route, predicate ?? (_) => false)
+        : replace
+            ? navigatorState.pushReplacement<T?, R>(route, result: pushReplacementResult)
+            : navigatorState.push<T?>(route);
   }
 
   Future<T?> to<T, R>(
