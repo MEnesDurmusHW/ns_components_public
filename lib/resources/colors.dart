@@ -32,7 +32,10 @@ abstract final class NSColors {
     highContrastElevatedColor: Color.fromRGBO(108, 108, 108, 1.0),
     darkHighContrastElevatedColor: Color.fromRGBO(142, 142, 146, 1.0),
   );
-  static const Color transparent = Color(0x00000000);
+  static const Color transparent = CupertinoDynamicColor.withBrightness(
+    color: Color(0x00000000),
+    darkColor: Color(0x00000000),
+  );
 }
 
 extension CupertinoDynamicColorExtension on CupertinoDynamicColor {
@@ -46,4 +49,13 @@ extension CupertinoDynamicColorExtension on CupertinoDynamicColor {
         highContrastElevatedColor: highContrastElevatedColor.withOpacity(opacity),
         darkHighContrastElevatedColor: darkHighContrastElevatedColor.withOpacity(opacity),
       );
+}
+
+extension ColorExtension on Color {
+  CupertinoDynamicColor toDynamicColor() {
+    return CupertinoDynamicColor.withBrightness(
+      color: this,
+      darkColor: this,
+    );
+  }
 }

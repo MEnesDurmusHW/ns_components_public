@@ -22,12 +22,14 @@ class NSListTile extends NSStatelessWidget {
   factory NSListTile.navigationLink({
     Key? key,
     required String title,
+    String? subtitle,
     VoidCallback? onTap,
     Widget? leading,
     Widget? additionalInfo,
   }) {
     return NSListTile(
       title: title,
+      subtitle: subtitle,
       onTap: onTap,
       trailing: onTap != null
           ? Builder(builder: (context) {

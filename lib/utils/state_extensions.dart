@@ -1,5 +1,7 @@
 part of '../ns_components.dart';
 
 extension NSStateExtension<T extends StatefulWidget> on State<T> {
-  void updateState() => context.updateState();
+  void updateState() {
+    if (mounted) context.updateState();
+  }
 }

@@ -94,7 +94,7 @@ class DefaultBigTitle extends InheritedWidget {
   const DefaultBigTitle({
     super.key,
     required super.child,
-    required this.bigTitle,
+    this.bigTitle = true,
   });
 
   final bool bigTitle;

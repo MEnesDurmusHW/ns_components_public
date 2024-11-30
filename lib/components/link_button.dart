@@ -1,9 +1,9 @@
 part of '../ns_components.dart';
 
-class LinkButton extends StatelessWidget {
+class NSLinkButton extends StatelessWidget {
   final String text;
   final String url;
-  const LinkButton({super.key, required this.text, required this.url});
+  const NSLinkButton({super.key, required this.text, required this.url});
 
   void onPressed() {
     launchUrl(

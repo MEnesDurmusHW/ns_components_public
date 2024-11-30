@@ -1,7 +1,7 @@
 part of ns_components;
 
 abstract class NSState<T extends StatefulWidget> extends State<T> {
-  Set<MapEntry<ValueNotifier, VoidCallback>> get listenersMap => {};
+  Set<MapEntry<Listenable, VoidCallback>> get listenersMap => {};
 
   @override
   void initState() {

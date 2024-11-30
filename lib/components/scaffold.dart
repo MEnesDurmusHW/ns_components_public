@@ -12,6 +12,7 @@ class NSScaffold extends StatefulWidget {
   final Widget? bottom;
   final ScrollController? scrollController;
   final bool automaticallyImplyLeading;
+  final Future<void> Function()? onRefresh;
   const NSScaffold({
     super.key,
     required this.title,
@@ -25,6 +26,7 @@ class NSScaffold extends StatefulWidget {
     this.bottom,
     this.scrollController,
     this.automaticallyImplyLeading = true,
+    this.onRefresh,
   });
 
   @override
@@ -77,7 +79,8 @@ class _NSScaffoldState extends State<NSScaffold> {
                 CupertinoSliverNavigationBar(
                   border: !isTitleCentered
                       ? null
-                      : Border(bottom: BorderSide(color: CupertinoColors.opaqueSeparator.resolveFrom(context))),
+                      : Border(
+                          bottom: BorderSide(color: CupertinoColors.opaqueSeparator.resolveFrom(context))),
                   largeTitle: MeasureSize(onChange: onChange, child: Text(widget.title)),
                   trailing: widget.trailing,
                   automaticallyImplyLeading: false,
@@ -94,6 +97,7 @@ class _NSScaffoldState extends State<NSScaffold> {
                             )
                           : null),
                 ),
+                if (widget.onRefresh != null) CupertinoSliverRefreshControl(onRefresh: widget.onRefresh),
                 SliverPadding(
                   padding: const EdgeInsets.only(top: 4.0),
                   sliver: SliverList(

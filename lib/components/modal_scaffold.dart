@@ -1,12 +1,12 @@
 part of '../ns_components.dart';
 
-class ModalScaffold extends StatelessWidget {
+class NSModalScaffold extends StatelessWidget {
   final String title;
   final Widget? leading;
   final Widget? trailing;
   final Widget body;
   final NSNavigatorKey? navigatorKey;
-  const ModalScaffold({
+  const NSModalScaffold({
     super.key,
     required this.title,
     required this.body,
@@ -15,12 +15,12 @@ class ModalScaffold extends StatelessWidget {
     this.navigatorKey,
   });
 
-  factory ModalScaffold.withCloseButton({
+  factory NSModalScaffold.withCloseButton({
     Key? key,
     required String title,
     required Widget body,
   }) {
-    return ModalScaffold(
+    return NSModalScaffold(
       key: key,
       title: title,
       trailing: const NSCloseButton(),

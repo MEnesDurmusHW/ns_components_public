@@ -1,13 +1,13 @@
 part of ns_components;
 
 class NSApp extends StatelessWidget {
-  final List<Widget> views;
-  final Iterable<Locale> supportedLocales;
-  final Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates;
+  final Widget home;
+  final Iterable<Locale>? supportedLocales;
+  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
   final NSAppViewModel Function()? viewModelBuilder;
   const NSApp({
     super.key,
-    required this.views,
+    required this.home,
     required this.supportedLocales,
     required this.localizationsDelegates,
     this.viewModelBuilder,
@@ -16,19 +16,15 @@ class NSApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder(
-      viewModelBuilder: viewModelBuilder ?? () => NSAppViewModel(),
+      viewModelBuilder: viewModelBuilder ?? NSAppViewModel.new,
       builder: (context, viewModel) {
         return CupertinoApp(
           debugShowCheckedModeBanner: false,
           navigatorKey: navigator.navigatorKey,
-          theme: CupertinoThemeData(
-            brightness: viewModel.brightness,
-            scaffoldBackgroundColor: NSColors.background.resolveFrom(context),
-            barBackgroundColor: NSColors.partiallyTransparentBackground.resolveFrom(context),
-          ),
-          home: viewModel.initialized ? NSDefaultTabBarView(views) : const SizedBox.shrink(),
+          theme: nsTheme,
+          home: viewModel.initialized ? home : const SizedBox.shrink(),
           locale: viewModel.locale,
-          supportedLocales: supportedLocales,
+          supportedLocales: supportedLocales ?? const <Locale>[Locale('en', 'US')],
           localizationsDelegates: localizationsDelegates,
         );
       },
@@ -42,7 +38,7 @@ class NSAppViewModel extends BaseViewModel {
   Brightness get brightness => nsBrightnessNotifier.value;
   Locale get locale => nsLocaleNotifier.value;
 
-  bool initialized = false;
+  bool initialized = true;
 
   @mustCallSuper
   @override

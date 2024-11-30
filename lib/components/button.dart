@@ -18,7 +18,7 @@ class NSButton extends StatefulWidget {
     required this.onPressed,
     this.padding,
     this.icon,
-    this.expanded = false,
+    this.expanded = true,
     this.minSize,
     this.margin,
   }) : _buttonType = _NSButtonTypes.plain;
@@ -42,7 +42,7 @@ class NSButton extends StatefulWidget {
     required this.onPressed,
     this.padding,
     this.icon,
-    this.expanded = false,
+    this.expanded = true,
     this.minSize,
     this.margin,
   }) : _buttonType = _NSButtonTypes.tinted;
