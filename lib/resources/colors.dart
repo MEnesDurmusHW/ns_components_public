@@ -32,9 +32,35 @@ abstract final class NSColors {
     highContrastElevatedColor: Color.fromRGBO(108, 108, 108, 1.0),
     darkHighContrastElevatedColor: Color.fromRGBO(142, 142, 146, 1.0),
   );
-  static const Color transparent = CupertinoDynamicColor.withBrightness(
+  static const CupertinoDynamicColor transparent = CupertinoDynamicColor.withBrightness(
     color: Color(0x00000000),
     darkColor: Color(0x00000000),
+  );
+
+  static const primaryBlack = CupertinoDynamicColor(
+    color: Color(0xFF121215),
+    elevatedColor: Color(0xFF121215),
+    darkElevatedColor: Color(0xFF121215),
+    highContrastColor: Color(0xFF121215),
+    darkHighContrastColor: Color(0xFF121215),
+    darkHighContrastElevatedColor: Color(0xFF121215),
+    highContrastElevatedColor: Color(0xFF121215),
+    darkColor: Color(0xFF1A1A1D),
+  );
+
+  static const charcoalBlack = CupertinoDynamicColor.withBrightness(
+    color: Color.fromARGB(255, 28, 28, 30),
+    darkColor: Color.fromARGB(255, 242, 242, 247),
+  );
+
+  static const blackWhite = CupertinoDynamicColor.withBrightness(
+    color: CupertinoColors.black,
+    darkColor: CupertinoColors.white,
+  );
+
+  static const whiteBlack = CupertinoDynamicColor.withBrightness(
+    color: CupertinoColors.white,
+    darkColor: CupertinoColors.black,
   );
 }
 

@@ -21,7 +21,7 @@ class NSApp extends StatelessWidget {
         return CupertinoApp(
           debugShowCheckedModeBanner: false,
           navigatorKey: navigator.navigatorKey,
-          theme: nsTheme,
+          theme: nsTheme.copyWith(brightness: viewModel.brightness),
           home: viewModel.initialized ? home : const SizedBox.shrink(),
           locale: viewModel.locale,
           supportedLocales: supportedLocales ?? const <Locale>[Locale('en', 'US')],

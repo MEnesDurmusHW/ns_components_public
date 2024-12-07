@@ -1,26 +1,47 @@
 part of '../ns_components.dart';
 
-mixin NSPaddings {
-  static const insetPadding = EdgeInsets.symmetric(horizontal: NSPaddingTypes.m);
-  static const groupedPadding = EdgeInsets.symmetric(vertical: NSPaddingTypes.s);
-  static const insetGroupedPadding = EdgeInsets.all(NSPaddingTypes.m);
+abstract final class NSPaddings {
+  static const insetPadding = EdgeInsets.symmetric(horizontal: NSPaddingTypes.horizontal);
+  static const groupedPadding = EdgeInsets.only(
+    top: NSPaddingTypes.top,
+    bottom: NSPaddingTypes.bottom,
+  );
+  static const insetGroupedPadding = EdgeInsets.fromLTRB(
+    NSPaddingTypes.horizontal,
+    NSPaddingTypes.top,
+    NSPaddingTypes.horizontal,
+    NSPaddingTypes.bottom,
+  );
   static const insetGroupedItemPadding = EdgeInsets.fromLTRB(
-    NSPaddingTypes.m,
+    NSPaddingTypes.horizontal,
     0,
-    NSPaddingTypes.m,
-    NSPaddingTypes.m,
+    NSPaddingTypes.horizontal,
+    NSPaddingTypes.bottom,
   );
   static const itemInsidePadding = EdgeInsets.symmetric(
-    horizontal: NSPaddingTypes.m,
-    vertical: NSPaddingTypes.s,
+    horizontal: NSPaddingTypes.horizontal,
+    vertical: NSPaddingTypes.vertical,
   );
-  static const listTile = EdgeInsets.symmetric(horizontal: 15.0);
+  static const listTile = EdgeInsets.symmetric(horizontal: NSPaddingTypes.horizontal);
+
+  static const headLinePadding = EdgeInsets.fromLTRB(
+    NSPaddingTypes.horizontal,
+    NSPaddingTypes.s,
+    NSPaddingTypes.horizontal,
+    NSPaddingTypes.top,
+  );
 }
 
-mixin NSPaddingTypes {
-  static const xs = 5.0;
-  static const s = 10.0;
-  static const m = 20.0;
-  static const l = 30.0;
-  static const xl = 40.0;
+abstract final class NSPaddingTypes {
+  static const xs = 4.0;
+  static const s = 8.0;
+  static const m = 16.0;
+  static const l = 24.0;
+  static const xl = 32.0;
+
+  static const horizontal = 20.0;
+  static const vertical = 16.0;
+
+  static const top = 10.0;
+  static const bottom = 20.0;
 }

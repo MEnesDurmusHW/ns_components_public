@@ -77,6 +77,7 @@ class _NSScaffoldState extends State<NSScaffold> {
               controller: _scrollController,
               slivers: [
                 CupertinoSliverNavigationBar(
+                  // backgroundColor: nsTheme.barBackgroundColor,
                   border: !isTitleCentered
                       ? null
                       : Border(

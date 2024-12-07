@@ -5,12 +5,16 @@ class NSImage extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit? fit;
+  final EdgeInsetsGeometry padding;
+  final BorderRadius borderRadius;
   const NSImage(
     this.url, {
     super.key,
     this.width,
     this.height,
     this.fit,
+    this.padding = NSPaddings.insetGroupedPadding,
+    this.borderRadius = NSDecorations.borderRadius,
   });
 
   @override
@@ -25,9 +29,9 @@ class NSImage extends StatelessWidget {
     );
 
     return Padding(
-      padding: NSPaddings.insetGroupedPadding,
+      padding: padding,
       child: ClipRRect(
-        borderRadius: NSDecorations.borderRadius,
+        borderRadius: borderRadius,
         child: image,
       ),
     );
