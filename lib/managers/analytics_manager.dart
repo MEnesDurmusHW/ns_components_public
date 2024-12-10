@@ -14,7 +14,7 @@ class AnalyticsManager {
 
   Future<void> logEvent({
     required String name,
-    Map<String, Object?>? parameters,
+    Map<String, Object>? parameters,
   }) async {
     String checkedName = name.replaceAll("'", '').replaceAll(" ", "");
     _analytics.logEvent(name: checkedName, parameters: parameters);
