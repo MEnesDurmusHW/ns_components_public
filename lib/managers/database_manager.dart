@@ -7,12 +7,16 @@ class DatabaseManager {
 
   late Database database;
 
-  Future<String> get databasePath async => path.join(await getDatabasesPath(), 'goal_module_database.db');
+  Future<String> getDatabasePath(String name) async => path.join(await getDatabasesPath(), '$name.db');
 
-  Future<void> init(Set<CreateDatabaseFunction> repositoryCreaters, [int version = 0]) async {
+  Future<void> init(
+    Set<CreateDatabaseFunction> repositoryCreaters, [
+    int version = 1,
+    String name = 'ns',
+  ]) async {
     try {
       database = await openDatabase(
-        await databasePath,
+        await getDatabasePath(name),
         version: version,
       );
       await createTables(
