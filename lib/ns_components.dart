@@ -1,8 +1,10 @@
 library ns_components;
 
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
+import 'dart:ui';
 import 'package:collection/collection.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -40,6 +42,7 @@ part 'components/option_tile.dart';
 part 'components/filled_icon.dart';
 part 'components/tap_gesture.dart';
 part 'components/text_field.dart';
+part 'components/text_field_tile.dart';
 part 'components/ring_chart.dart';
 part 'components/empty_state_widget.dart';
 part 'components/disposable_section.dart';
@@ -94,6 +97,7 @@ part 'models/localized_text.dart';
 
 //Shareds
 part 'shared/models/brightness.dart';
+part 'shared/models/language.dart';
 part 'shared/views/settings/language_view.dart';
 part 'shared/views/settings/language_navigation_link.dart';
 part 'shared/views/settings/brightness_navigation_link.dart';

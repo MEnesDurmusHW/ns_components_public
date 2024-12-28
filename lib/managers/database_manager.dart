@@ -9,9 +9,8 @@ class DatabaseManager {
 
   Future<String> get databasePath async => path.join(await getDatabasesPath(), 'goal_module_database.db');
 
-  Future<void> init(Set<CreateDatabaseFunction> repositoryCreaters) async {
+  Future<void> init(Set<CreateDatabaseFunction> repositoryCreaters, [int version = 0]) async {
     try {
-      const version = 1;
       database = await openDatabase(
         await databasePath,
         version: version,
@@ -31,6 +30,7 @@ class DatabaseManager {
       try {
         await fn(db, version);
       } catch (e) {
+        if (e.toString().contains('already exists')) return;
         logger.log(e);
       }
     }

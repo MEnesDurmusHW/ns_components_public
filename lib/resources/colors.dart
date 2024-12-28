@@ -22,7 +22,7 @@ abstract final class NSColors {
     color: Color(0xFF000000),
     darkColor: Color(0xFFFFFFFF),
   );
-  static const Color kHeaderFooterColor = CupertinoDynamicColor(
+  static const kHeaderFooterColor = CupertinoDynamicColor(
     color: Color.fromRGBO(108, 108, 108, 1.0),
     darkColor: Color.fromRGBO(142, 142, 146, 1.0),
     highContrastColor: Color.fromRGBO(74, 74, 77, 1.0),
@@ -32,19 +32,19 @@ abstract final class NSColors {
     highContrastElevatedColor: Color.fromRGBO(108, 108, 108, 1.0),
     darkHighContrastElevatedColor: Color.fromRGBO(142, 142, 146, 1.0),
   );
-  static const CupertinoDynamicColor transparent = CupertinoDynamicColor.withBrightness(
+  static const transparent = CupertinoDynamicColor.withBrightness(
     color: Color(0x00000000),
     darkColor: Color(0x00000000),
   );
 
   static const primaryBlack = CupertinoDynamicColor(
     color: Color(0xFF121215),
-    elevatedColor: Color(0xFF121215),
-    darkElevatedColor: Color(0xFF121215),
+    elevatedColor: Color(0xFF000000),
+    darkElevatedColor: Color(0xFF000000),
     highContrastColor: Color(0xFF121215),
     darkHighContrastColor: Color(0xFF121215),
-    darkHighContrastElevatedColor: Color(0xFF121215),
-    highContrastElevatedColor: Color(0xFF121215),
+    darkHighContrastElevatedColor: Color(0xFF000000),
+    highContrastElevatedColor: Color(0xFF000000),
     darkColor: Color(0xFF1A1A1D),
   );
 

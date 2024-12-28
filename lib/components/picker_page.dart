@@ -20,7 +20,7 @@ class NSPickerPage<T> extends StatelessWidget {
             onTap: () => (onChoose ?? navigatorKey.goBack).call(e),
           );
 
-  static Widget _defaultOptionBuilder(e, navigatorKey) => CupertinoListTile(
+  static Widget _defaultOptionBuilder(e, NSNavigatorKey navigatorKey) => CupertinoListTile(
         title: Text(e.toString()),
         onTap: () => navigatorKey.goBack(e),
       );
@@ -67,19 +67,24 @@ class NSPickerListTile<T> extends NSListTile {
 
   @override
   Widget build(BuildContext context) {
-    return NSListTile(
-      title: title,
-      subtitle: subtitle,
+    return CupertinoListTile(
+      padding: customPadding ?? NSPaddings.itemInsidePadding,
+      title: Text(
+        title,
+        style: DefaultBigTitle.isBigTitle(context) ? context.textTheme.navTitleTextStyle : context.textStyle,
+      ),
+      subtitle: subtitle != null ? Text(subtitle!) : null,
       trailing: trailing,
       leading: leading,
       additionalInfo: additionalInfo,
-      onTap: () => navigatorKey.pushWidget(NSPickerPage(
-        title: pickerTitle,
-        navigatorKey: navigatorKey,
-        list: list,
-        optionBuilder: optionBuilder,
-      )),
-      customPadding: customPadding,
+      onTap: () => navigatorKey.pushWidget(
+        NSPickerPage(
+          title: pickerTitle,
+          navigatorKey: navigatorKey,
+          list: list,
+          optionBuilder: optionBuilder,
+        ),
+      ),
     );
   }
 }

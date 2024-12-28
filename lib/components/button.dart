@@ -10,6 +10,7 @@ class NSButton extends StatefulWidget {
   final VoidCallback? onPressed;
   final double? minSize;
   final _NSButtonTypes _buttonType;
+  final TextStyle? customTextStyle;
 
   const NSButton.plain({
     super.key,
@@ -21,6 +22,7 @@ class NSButton extends StatefulWidget {
     this.expanded = true,
     this.minSize,
     this.margin,
+    this.customTextStyle,
   }) : _buttonType = _NSButtonTypes.plain;
 
   const NSButton.filled({
@@ -33,6 +35,7 @@ class NSButton extends StatefulWidget {
     this.expanded = true,
     this.minSize,
     this.margin,
+    this.customTextStyle,
   }) : _buttonType = _NSButtonTypes.filled;
 
   const NSButton.tinted({
@@ -45,6 +48,7 @@ class NSButton extends StatefulWidget {
     this.expanded = true,
     this.minSize,
     this.margin,
+    this.customTextStyle,
   }) : _buttonType = _NSButtonTypes.tinted;
 
   @override
@@ -58,10 +62,10 @@ class _NSButtonState extends State<NSButton> with SingleItemSingleTimeMeasureSiz
     switch (widget._buttonType) {
       case _NSButtonTypes.filled:
         return textStyle.copyWith(fontWeight: FontWeight.w600, color: textColor ?? CupertinoColors.white);
-      case _NSButtonTypes.plain:
-        return textStyle.copyWith(color: foregroundColor);
       case _NSButtonTypes.tinted:
-        return textStyle.copyWith(fontWeight: FontWeight.w500, color: widget.color);
+        return textStyle.copyWith(fontWeight: FontWeight.w600, color: widget.color);
+      case _NSButtonTypes.plain:
+        return textStyle.copyWith(fontWeight: FontWeight.w700, color: foregroundColor);
     }
   }
 
@@ -91,7 +95,8 @@ class _NSButtonState extends State<NSButton> with SingleItemSingleTimeMeasureSiz
       case _NSButtonTypes.plain:
         return null;
       case _NSButtonTypes.tinted:
-        return (widget.color ?? (context.theme.primaryColor as CupertinoDynamicColor).resolveFrom(context)).withOpacity(0.16);
+        return (widget.color ?? (context.theme.primaryColor as CupertinoDynamicColor).resolveFrom(context))
+            .withOpacity(0.16);
     }
   }
 
@@ -109,7 +114,7 @@ class _NSButtonState extends State<NSButton> with SingleItemSingleTimeMeasureSiz
   Widget build(BuildContext context) {
     Widget child = Text(
       widget.text,
-      style: getTextStyle(context),
+      style: widget.customTextStyle ?? getTextStyle(context),
     );
 
     if (widget.icon != null) {
@@ -117,7 +122,9 @@ class _NSButtonState extends State<NSButton> with SingleItemSingleTimeMeasureSiz
         children: [
           Padding(
             padding: const EdgeInsets.only(right: NSPaddingTypes.xs),
-            child: IconTheme(data: IconTheme.of(context).copyWith(color: getForegroundColor(context)), child: widget.icon!),
+            child: IconTheme(
+                data: IconTheme.of(context).copyWith(color: getForegroundColor(context)),
+                child: widget.icon!),
           ),
           child,
         ],

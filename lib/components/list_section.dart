@@ -27,7 +27,7 @@ class NSListSection extends StatelessWidget {
   double get additionalDividerMargin {
     return hasLeading
         ? 28 + (children.first is NSWidget ? (children.first as NSWidget).padding.left : 20.0) + 4.0
-        : 5.0;
+        : 9.0;
   }
 
   bool isTitleBig(BuildContext context) => bigTitle ?? DefaultBigTitle.isBigTitle(context);
