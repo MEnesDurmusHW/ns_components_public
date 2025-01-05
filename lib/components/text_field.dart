@@ -41,26 +41,24 @@ class NSTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isEnabled = enabled ?? NSDefaultEnabledWidget.maybeOf(context)?.isEnabled ?? true;
-    return AbsorbPointer(
-      absorbing: !isEnabled,
-      child: CupertinoTextField.borderless(
-        focusNode: focusNode,
-        autofocus: autofocus,
-        placeholder: placeholder,
-        suffix: suffix ?? (isEnabled ? actionSuffix : null),
-        controller: controller,
-        maxLength: maxLength,
-        suffixMode: suffixMode,
-        prefix: prefix,
-        prefixMode: prefixMode,
-        clearButtonMode: clearButtonMode,
-        padding: padding,
-        inputFormatters: {
-          if (isNumeric) FilteringTextInputFormatter.digitsOnly,
-          if (inputFormatters != null) ...inputFormatters!,
-        }.toList(),
-        keyboardType: keyboardType,
-      ),
+    return CupertinoTextField.borderless(
+      readOnly: !isEnabled,
+      focusNode: focusNode,
+      autofocus: autofocus,
+      placeholder: placeholder,
+      suffix: suffix ?? (isEnabled ? actionSuffix : null),
+      controller: controller,
+      maxLength: maxLength,
+      suffixMode: suffixMode,
+      prefix: prefix,
+      prefixMode: prefixMode,
+      clearButtonMode: clearButtonMode,
+      padding: padding,
+      inputFormatters: {
+        if (isNumeric) FilteringTextInputFormatter.digitsOnly,
+        if (inputFormatters != null) ...inputFormatters!,
+      }.toList(),
+      keyboardType: keyboardType,
     );
   }
 }

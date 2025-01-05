@@ -5,7 +5,7 @@ class NSSection extends StatelessWidget {
   final List<Widget> children;
   final Axis axis;
   final double spacing;
-  final EdgeInsetsGeometry padding;
+  final EdgeInsets padding;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   const NSSection({
@@ -40,11 +40,14 @@ class NSSection extends StatelessWidget {
               style: context.textStyle.merge(context.textTheme.navTitleTextStyle),
             ),
           ),
-        Flex(
-          direction: axis,
-          mainAxisAlignment: mainAxisAlignment,
-          crossAxisAlignment: crossAxisAlignment,
-          children: spacedChildren,
+        Padding(
+          padding: padding.copyWith(top: title != null ? 0.0 : padding.top),
+          child: Flex(
+            direction: axis,
+            mainAxisAlignment: mainAxisAlignment,
+            crossAxisAlignment: crossAxisAlignment,
+            children: spacedChildren,
+          ),
         ),
       ],
     );

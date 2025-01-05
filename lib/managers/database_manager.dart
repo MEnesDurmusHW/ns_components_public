@@ -34,7 +34,7 @@ class DatabaseManager {
       try {
         await fn(db, version);
       } catch (e) {
-        if (e.toString().contains('already exists')) return;
+        if (e.toString().contains('already exists')) continue;
         logger.log(e);
       }
     }
