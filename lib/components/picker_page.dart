@@ -2,27 +2,30 @@ part of ns_components;
 
 class NSPickerPage<T> extends StatelessWidget {
   final String title;
-  final NSNavigatorKey navigatorKey;
+  final OnChooseCallback goBackWithResult;
   final List<T> list;
-  final Widget Function(T e, NSNavigatorKey navigatorKey) optionBuilder;
+  final Widget Function(T e, OnChooseCallback goBackWithResult) optionBuilder;
   const NSPickerPage({
     super.key,
     required this.title,
-    required this.navigatorKey,
+    required this.goBackWithResult,
     required this.list,
     this.optionBuilder = _defaultOptionBuilder,
   });
 
-  static Widget Function(T e, NSNavigatorKey navigatorKey) defaultOptionBuilder<T>(
-          {String Function(T e)? mapper, void Function(T result)? onChoose}) =>
-      (e, navigatorKey) => CupertinoListTile(
+  static Widget Function(T e, OnChooseCallback goBackWithResult) defaultOptionBuilder<T>(
+          {String Function(T e)? mapper, void Function(T result)? onChooseCallback}) =>
+      (e, goBackWithResult) => CupertinoListTile(
             title: Text(mapper != null ? mapper(e) : e.toString()),
-            onTap: () => (onChoose ?? navigatorKey.goBack).call(e),
+            onTap: () {
+              onChooseCallback?.call(e);
+              goBackWithResult(e);
+            },
           );
 
-  static Widget _defaultOptionBuilder(e, NSNavigatorKey navigatorKey) => CupertinoListTile(
+  static Widget _defaultOptionBuilder(e, OnChooseCallback goBackWithResult) => CupertinoListTile(
         title: Text(e.toString()),
-        onTap: () => navigatorKey.goBack(e),
+        onTap: () => goBackWithResult(e),
       );
 
   @override
@@ -30,7 +33,7 @@ class NSPickerPage<T> extends StatelessWidget {
     return NSSimpleScaffold(
       title: Text(title),
       leading: NSTapGesture(
-        onTap: navigatorKey.goBack,
+        onTap: goBackWithResult,
         child: Icon(
           CupertinoIcons.arrow_left,
           color: NSColors.actionColor.resolveFrom(context),
@@ -39,15 +42,15 @@ class NSPickerPage<T> extends StatelessWidget {
       ),
       child: NSListSection(
         isScrollable: true,
-        children: list.map((e) => optionBuilder(e, navigatorKey)).toList(),
+        children: list.map((e) => optionBuilder(e, goBackWithResult)).toList(),
       ),
     );
   }
 }
 
 class NSPickerListTile<T> extends NSListTile {
-  final Widget Function(T e, NSNavigatorKey navigatorKey) optionBuilder;
-  final NSNavigatorKey navigatorKey;
+  final Widget Function(T e, OnChooseCallback goBackWithResult) optionBuilder;
+  final NSBaseNavigatorKey? navigatorKey;
   final List<T> list;
   final String pickerTitle;
   const NSPickerListTile({
@@ -67,20 +70,18 @@ class NSPickerListTile<T> extends NSListTile {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoListTile(
-      padding: customPadding ?? NSPaddings.itemInsidePadding,
-      title: Text(
-        title,
-        style: DefaultBigTitle.isBigTitle(context) ? context.textTheme.navTitleTextStyle : context.textStyle,
-      ),
-      subtitle: subtitle != null ? Text(subtitle!) : null,
+    final currentNavigatorKey = navigatorKey ?? NSCustomNavigatorKey.fromContext(context);
+    return NSListTile.navigationLink(
+      customPadding: customPadding ?? NSPaddings.listTile,
+      title: title,
+      subtitle: subtitle,
       trailing: trailing,
       leading: leading,
       additionalInfo: additionalInfo,
-      onTap: () => navigatorKey.pushWidget(
+      onTap: () => currentNavigatorKey.pushWidget(
         NSPickerPage(
           title: pickerTitle,
-          navigatorKey: navigatorKey,
+          goBackWithResult: currentNavigatorKey.goBack,
           list: list,
           optionBuilder: optionBuilder,
         ),

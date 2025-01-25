@@ -40,7 +40,7 @@ class NSTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isEnabled = enabled ?? NSDefaultEnabledWidget.maybeOf(context)?.isEnabled ?? true;
+    final isEnabled = enabled ?? NSDefaultEnabledWidget.maybeOf(context) ?? true;
     return CupertinoTextField.borderless(
       readOnly: !isEnabled,
       focusNode: focusNode,

@@ -25,21 +25,17 @@ class NSListTile extends NSStatelessWidget {
     String? subtitle,
     VoidCallback? onTap,
     Widget? leading,
+    Widget? trailing,
     Widget? additionalInfo,
+    EdgeInsets? customPadding,
   }) {
     return NSListTile(
       title: title,
       subtitle: subtitle,
+      customPadding: customPadding,
       onTap: onTap,
-      trailing: onTap != null
-          ? Builder(builder: (context) {
-              return Icon(
-                CupertinoIcons.chevron_forward,
-                size: CupertinoTheme.of(context).textTheme.textStyle.fontSize,
-                color: CupertinoColors.systemGrey2.resolveFrom(context),
-              );
-            })
-          : null,
+      trailing: trailing ??
+          (onTap != null ? Builder(builder: (_) => const CupertinoListTileChevron()) : null),
       additionalInfo: additionalInfo,
       leading: leading,
     );
@@ -52,20 +48,11 @@ class NSListTile extends NSStatelessWidget {
 
   bool get hasLeading => leading != null;
 
-  Widget getTitleWidget(String title) {
-    return hasLeading
-        ? Text(title)
-        : Padding(
-            padding: const EdgeInsets.only(left: NSPaddingTypes.xs),
-            child: Text(title),
-          );
-  }
-
   @override
   Widget build(BuildContext context) {
     return CupertinoListTile(
-      title: getTitleWidget(title),
-      subtitle: subtitle != null ? getTitleWidget(subtitle!) : null,
+      title: Text(title),
+      subtitle: subtitle != null ? Text(subtitle!) : null,
       leading: leading,
       trailing: trailing,
       additionalInfo: additionalInfo,

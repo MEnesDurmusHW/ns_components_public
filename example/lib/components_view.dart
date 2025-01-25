@@ -1,3 +1,4 @@
+import 'package:example/subviews/button_colors_view.dart';
 import 'package:example/widget_detail_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ns_components/ns_components.dart';
@@ -51,6 +52,14 @@ class ComponentsView extends StatelessWidget {
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        NSListSection(
+                          children: [
+                            NSListTile.navigationLink(
+                              title: 'All Colors',
+                              onTap: () => navigator.to(const ButtonColorsView()),
+                            ),
+                          ],
+                        ),
                         NSButton.filled(
                           text: 'Filled',
                           onPressed: () {},

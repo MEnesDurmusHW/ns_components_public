@@ -22,7 +22,13 @@ abstract final class NSPaddings {
     horizontal: NSPaddingTypes.horizontal,
     vertical: NSPaddingTypes.vertical,
   );
-  static const listTile = EdgeInsets.symmetric(horizontal: NSPaddingTypes.horizontal);
+  static const listTile = EdgeInsets.symmetric(
+    horizontal: NSPaddingTypes.horizontal,
+  );
+  static const listTileWithVertical = EdgeInsets.symmetric(
+    vertical: NSPaddingTypes.listTileVertical,
+    horizontal: NSPaddingTypes.horizontal,
+  );
 
   static const headLinePadding = EdgeInsets.fromLTRB(
     NSPaddingTypes.horizontal,
@@ -41,6 +47,7 @@ abstract final class NSPaddingTypes {
 
   static const horizontal = 20.0;
   static const vertical = 16.0;
+  static const listTileVertical = 12.0;
 
   static const top = 10.0;
   static const bottom = 20.0;

@@ -61,16 +61,3 @@ class NSModalScaffold extends StatelessWidget {
     );
   }
 }
-
-class NSNavigatorKey {
-  final navigatorKey = GlobalKey<NavigatorState>();
-
-  Future<T?> pushWidget<T>(Widget widget) {
-    final route = CupertinoPageRoute<T>(builder: (_) => widget);
-    return navigatorKey.currentState?.push(route) ?? Future.value(null);
-  }
-
-  Future<bool> goBack<T>([T? result]) {
-    return navigatorKey.currentState?.maybePop(result) ?? Future.value(false);
-  }
-}

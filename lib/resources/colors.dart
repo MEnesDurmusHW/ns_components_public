@@ -75,6 +75,8 @@ extension CupertinoDynamicColorExtension on CupertinoDynamicColor {
         highContrastElevatedColor: highContrastElevatedColor.withOpacity(opacity),
         darkHighContrastElevatedColor: darkHighContrastElevatedColor.withOpacity(opacity),
       );
+  Color resolvedTintedColor(BuildContext context) =>
+      Color.lerp(resolveFrom(context), CupertinoColors.white, context.isDark ? 0.6 : 0.85)!;
 }
 
 extension ColorExtension on Color {

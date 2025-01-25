@@ -1,7 +1,7 @@
 part of '../ns_components.dart';
 
 class NSTextFieldTile extends StatelessWidget {
-  final bool isEnabled;
+  final bool? isEnabled;
   final String? title;
   final String? subtitle;
   final TextEditingController? controller;
@@ -17,9 +17,10 @@ class NSTextFieldTile extends StatelessWidget {
   final OverlayVisibilityMode clearButtonMode;
   final int? maxLength;
   final EdgeInsetsGeometry padding;
+  final String Function(String? text)? textMapper;
 
   const NSTextFieldTile({
-    Key? key,
+    super.key,
     this.title,
     this.subtitle,
     this.controller,
@@ -34,15 +35,20 @@ class NSTextFieldTile extends StatelessWidget {
     this.prefixMode = OverlayVisibilityMode.always,
     this.clearButtonMode = OverlayVisibilityMode.never,
     this.maxLength,
-    this.isEnabled = true,
-    this.padding = NSPaddings.itemInsidePadding,
-  }) : super(key: key);
+    this.isEnabled,
+    this.padding = NSPaddings.listTileWithVertical,
+    this.textMapper,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final isEnabled = this.isEnabled ?? context.isEnable;
     return CupertinoTextField.borderless(
       textAlign: TextAlign.end,
-      controller: controller,
+      controller: isEnabled
+          ? controller
+          : TextEditingController(
+              text: textMapper?.call(controller?.text) ?? controller?.text ?? ''),
       readOnly: !isEnabled,
       suffix: suffix,
       suffixMode: suffixMode,
@@ -54,7 +60,7 @@ class NSTextFieldTile extends StatelessWidget {
       autofocus: autofocus,
       prefixMode: prefixMode,
       clearButtonMode: clearButtonMode,
-      style: context.textStyle.copyWith(color: context.primaryColor),
+      style: isEnabled ? context.formTextStyle : context.textStyle,
       maxLength: maxLength,
       padding: padding,
       prefix: title != null
@@ -66,8 +72,6 @@ class NSTextFieldTile extends StatelessWidget {
     );
   }
 }
-
-
 
 class _TextFieldPrefix extends StatelessWidget {
   final String title;

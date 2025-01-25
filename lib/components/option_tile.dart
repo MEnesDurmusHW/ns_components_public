@@ -45,7 +45,7 @@ class _NSOptionTileState<T> extends NSState<NSOptionTile<T>> {
 
   @override
   Widget build(BuildContext context) {
-    final isEnabled = NSDefaultEnabledWidget.maybeOf(context)?.isEnabled ?? true;
+    final isEnabled = NSDefaultEnabledWidget.maybeOf(context) ?? true;
     return Column(
       children: [
         NSListTile(
