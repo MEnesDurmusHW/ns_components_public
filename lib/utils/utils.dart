@@ -2,6 +2,7 @@ part of ns_components;
 
 class NSUtils {
   String getCallerMethodName() {
+    if (kIsWeb && kReleaseMode) return "not supported on web";
     final methodName = _getMethodNameFromStackLine(StackTrace.current.toString().split('\n')[2]);
     return methodName;
   }

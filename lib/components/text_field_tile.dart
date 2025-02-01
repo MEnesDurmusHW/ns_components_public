@@ -110,7 +110,7 @@ class _TextFieldPrefix extends StatelessWidget {
     }
     return Padding(
       padding: NSPaddings.listTile.copyWith(
-        left: NSPaddings.listTile.left + NSPaddingTypes.xs,
+        left: NSPaddings.listTile.left,
         right: 0,
       ),
       child: SizedBox(
