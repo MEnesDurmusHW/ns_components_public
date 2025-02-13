@@ -5,9 +5,9 @@ enum NSBrightness {
   light,
   dark;
 
-  factory NSBrightness.fromBrightness(Brightness brightness) {
+  factory NSBrightness.fromBrightness(Brightness? brightness) {
     return NSBrightness.values.firstWhere(
-      (e) => e.name == brightness.name,
+      (e) => e.name == brightness?.name,
       orElse: () => NSBrightness.auto,
     );
   }

@@ -1,4 +1,5 @@
 import 'package:example/components_view.dart';
+import 'package:example/managers_view.dart';
 import 'package:example/ui_test.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ns_components/ns_components.dart';
@@ -30,7 +31,7 @@ class TabBarView extends StatelessWidget {
 
   final _views = const [
     ComponentsView(),
-    SizedBox(),
+    ManagersView(),
     SizedBox(),
     UITest(),
   ];
@@ -42,7 +43,8 @@ class TabBarView extends StatelessWidget {
       tabBuilder: tabBuilder,
       tabBar: CupertinoTabBar(
         items: [
-          NSBottomNavigationBarItem(icon: CupertinoIcons.square_split_1x2_fill, label: 'Components'),
+          NSBottomNavigationBarItem(
+              icon: CupertinoIcons.square_split_1x2_fill, label: 'Components'),
           NSBottomNavigationBarItem(icon: CupertinoIcons.person_2_fill, label: 'Managers'),
           NSBottomNavigationBarItem(icon: CupertinoIcons.wrench_fill, label: 'Utils'),
           NSBottomNavigationBarItem(icon: CupertinoIcons.hammer_fill, label: 'UI Test'),

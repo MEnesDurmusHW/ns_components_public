@@ -1,7 +1,7 @@
 part of ns_components;
 
-class ThemeListTile extends StatelessWidget implements NSWidget {
-  const ThemeListTile({super.key});
+class NSBrightnessListTile extends StatelessWidget implements NSWidget {
+  const NSBrightnessListTile({super.key});
 
   @override
   EdgeInsets get padding => const EdgeInsets.all(15.0);
@@ -12,7 +12,7 @@ class ThemeListTile extends StatelessWidget implements NSWidget {
       valueListenable: nsLocaleNotifier,
       builder: (_, __, ___) {
         return ValueListenableBuilder(
-          valueListenable: nsInternalBrightnessNotifier,
+          valueListenable: nsbrightnessManager,
           builder: (_, __, ___) {
             return NSListTile.navigationLink(
               title: _Localization.i.theme,
@@ -20,8 +20,9 @@ class ThemeListTile extends StatelessWidget implements NSWidget {
                 CupertinoIcons.circle_lefthalf_fill,
                 color: CupertinoColors.systemIndigo.resolveFrom(context),
               ),
-              additionalInfo: Text(nsInternalBrightnessNotifier.value.localizedText),
-              onTap: () => navigator.to(const BrightnessView()),
+              additionalInfo:
+                  Text(NSBrightness.fromBrightness(nsbrightnessManager.value).localizedText),
+              onTap: () => navigator.to(const NSBrightnessView()),
             );
           },
         );
@@ -36,17 +37,18 @@ class NSBrightnessToggleTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: nsInternalBrightnessNotifier,
-      builder: (_, nsbrightness, ___) {
+      valueListenable: nsbrightnessManager,
+      builder: (_, brightness, ___) {
         return NSListTile(
-          title: _Localization.i.theme,
+          title: "${_Localization.i.themeDark} ${_Localization.i.theme}",
           leading: NSFilledIcon.byIcon(
             CupertinoIcons.circle_lefthalf_fill,
             color: CupertinoColors.systemIndigo.resolveFrom(context),
           ),
           trailing: CupertinoSwitch(
-            value: nsbrightness.toBrightness == Brightness.dark,
-            onChanged: (value) => brightnessManager.setBrighness(
+            value: (brightness ?? View.of(context).platformDispatcher.platformBrightness) ==
+                Brightness.dark,
+            onChanged: (value) => nsbrightnessManager.setBrighness(
               value ? NSBrightness.dark : NSBrightness.light,
             ),
           ),
@@ -62,11 +64,11 @@ class NSBrightnessToggle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: nsInternalBrightnessNotifier,
+      valueListenable: nsbrightnessManager,
       builder: (_, nsbrightness, ___) {
         return CupertinoSwitch(
-          value: nsbrightness.toBrightness == Brightness.dark,
-          onChanged: (value) => brightnessManager.setBrighness(
+          value: nsbrightness == Brightness.dark,
+          onChanged: (value) => nsbrightnessManager.setBrighness(
             value ? NSBrightness.dark : NSBrightness.light,
           ),
         );

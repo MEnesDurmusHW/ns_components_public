@@ -34,8 +34,8 @@ class NSApp extends StatelessWidget {
 
 class NSAppViewModel extends BaseViewModel {
   @override
-  Set<Listenable> get listenables => {nsBrightnessNotifier, nsLocaleNotifier};
-  Brightness get brightness => nsBrightnessNotifier.value;
+  Set<Listenable> get listenables => {nsbrightnessManager, nsLocaleNotifier};
+  Brightness get brightness => nsbrightnessManager.getValueByContext(context);
   Locale get locale => nsLocaleNotifier.value;
 
   bool initialized = true;
@@ -43,7 +43,7 @@ class NSAppViewModel extends BaseViewModel {
   @mustCallSuper
   @override
   void init() async {
-    await brightnessManager.init();
+    await nsbrightnessManager.init();
     super.init();
   }
 }

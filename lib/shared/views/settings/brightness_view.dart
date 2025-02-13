@@ -1,15 +1,15 @@
 part of ns_components;
 
-class BrightnessView extends StatelessWidget {
+class NSBrightnessView extends StatelessWidget {
   final String? title;
-  const BrightnessView({super.key, this.title});
+  const NSBrightnessView({super.key, this.title});
 
   Widget? trailing(NSBrightness brightness) {
-    return nsInternalBrightnessNotifier.value == brightness ? const NSCheckMark() : null;
+    return nsbrightnessManager.value == brightness.toBrightness ? const NSCheckMark() : null;
   }
 
   void setBrightness(NSBrightness brightness) {
-    brightnessManager.setBrighness(brightness);
+    nsbrightnessManager.setBrighness(brightness);
   }
 
   @override
@@ -18,7 +18,7 @@ class BrightnessView extends StatelessWidget {
       valueListenable: nsLocaleNotifier,
       builder: (context, locale, _) {
         return ValueListenableBuilder(
-          valueListenable: nsInternalBrightnessNotifier,
+          valueListenable: nsbrightnessManager,
           builder: (context, brightness, _) {
             return NSScaffold(
               title: title ?? _Localization.i.theme,

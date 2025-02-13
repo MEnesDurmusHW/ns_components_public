@@ -42,7 +42,7 @@ class _FeedbackButtonState extends State<FeedbackButton> {
       valueListenable: nsLocaleNotifier,
       builder: (_, __, ___) {
         return ValueListenableBuilder(
-          valueListenable: nsInternalBrightnessNotifier,
+          valueListenable: nsbrightnessManager,
           builder: (_, __, ___) {
             return NSListTile(
               title: widget.title ?? _Localization.i.feedback,
