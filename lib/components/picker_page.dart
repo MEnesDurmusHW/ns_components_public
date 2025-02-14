@@ -58,7 +58,7 @@ class NSPickerListTile<T> extends NSListTile {
     required this.list,
     required this.pickerTitle,
     required super.title,
-    required this.navigatorKey,
+    this.navigatorKey,
     this.optionBuilder = NSPickerPage._defaultOptionBuilder,
     super.subtitle,
     super.trailing,

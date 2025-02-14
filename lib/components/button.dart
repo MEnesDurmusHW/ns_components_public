@@ -61,9 +61,10 @@ class _NSButtonState extends State<NSButton> with SingleItemSingleTimeMeasureSiz
     final textStyle = DefaultTextStyle.of(context).style.copyWith(color: foregroundColor);
     switch (widget._buttonType) {
       case _NSButtonTypes.filled:
-        return textStyle.copyWith(fontWeight: FontWeight.w600, color: textColor ?? CupertinoColors.white);
+        return textStyle.copyWith(
+            fontWeight: FontWeight.w600, color: textColor ?? CupertinoColors.white);
       case _NSButtonTypes.tinted:
-        return textStyle.copyWith(fontWeight: FontWeight.w600, color: widget.color);
+        return textStyle.copyWith(fontWeight: FontWeight.w600, color: foregroundColor);
       case _NSButtonTypes.plain:
         return textStyle.copyWith(fontWeight: FontWeight.w700, color: foregroundColor);
     }
@@ -78,6 +79,19 @@ class _NSButtonState extends State<NSButton> with SingleItemSingleTimeMeasureSiz
         return CupertinoColors.placeholderText.resolveFrom(context);
       }
     }
+    if (widget._buttonType == _NSButtonTypes.tinted) {
+      if (enabled) {
+        final color = CupertinoDynamicColor.maybeResolve(widget.color, context) ??
+            primaryColor.resolveFrom(context);
+        return Color.lerp(
+          color,
+          CupertinoColors.black,
+          color.isLightColor ? 0.4 : 0.2,
+        );
+      } else {
+        return CupertinoColors.placeholderText.resolveFrom(context);
+      }
+    }
     final Color? backgroundColor = widget.color == null
         ? (widget._buttonType == _NSButtonTypes.filled ? primaryColor : null)
         : CupertinoDynamicColor.maybeResolve(widget.color, context);
@@ -85,18 +99,19 @@ class _NSButtonState extends State<NSButton> with SingleItemSingleTimeMeasureSiz
         ? context.theme.primaryContrastingColor
         : enabled
             ? primaryColor.resolveFrom(context)
-            : CupertinoDynamicColor.resolve(CupertinoColors.placeholderText, context);
+            : CupertinoDynamicColor.maybeResolve(CupertinoColors.placeholderText, context);
   }
 
   Color? getFillColor(BuildContext context) {
+    final color = widget.color;
     switch (widget._buttonType) {
       case _NSButtonTypes.filled:
         return widget.color ?? context.theme.primaryColor;
       case _NSButtonTypes.plain:
         return null;
       case _NSButtonTypes.tinted:
-        return (widget.color ?? (context.theme.primaryColor as CupertinoDynamicColor).resolveFrom(context))
-            .withOpacity(0.16);
+        return (color is CupertinoDynamicColor ? color.resolvedTintedColor(context) : color) ??
+            context.primaryColor.resolvedTintedColor(context);
     }
   }
 

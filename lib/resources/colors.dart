@@ -75,8 +75,16 @@ extension CupertinoDynamicColorExtension on CupertinoDynamicColor {
         highContrastElevatedColor: highContrastElevatedColor.withOpacity(opacity),
         darkHighContrastElevatedColor: darkHighContrastElevatedColor.withOpacity(opacity),
       );
-  Color resolvedTintedColor(BuildContext context) =>
-      Color.lerp(resolveFrom(context), CupertinoColors.white, context.isDark ? 0.6 : 0.85)!;
+  Color resolvedTintedColor(BuildContext context) {
+    final color = resolveFrom(context);
+    return (Color.lerp(
+              color,
+              CupertinoColors.white,
+              isLightColor ? 0.5 : 0.7,
+            ) ??
+            resolveFrom(context))
+        .withOpacity(context.isDark ? 1 : 0.8);
+  }
 }
 
 extension ColorExtension on Color {
@@ -85,5 +93,35 @@ extension ColorExtension on Color {
       color: this,
       darkColor: this,
     );
+  }
+
+  bool get isLightColor => computeLuminance() > 0.5;
+}
+
+enum NSColorType {
+  systemBlue(CupertinoColors.systemBlue),
+  systemCyan(CupertinoColors.systemCyan),
+  systemGreen(CupertinoColors.systemGreen),
+  systemGrey(CupertinoColors.systemGrey),
+  systemIndigo(CupertinoColors.systemIndigo),
+  systemMint(CupertinoColors.systemMint),
+  systemOrange(CupertinoColors.systemOrange),
+  systemPink(CupertinoColors.systemPink),
+  systemPurple(CupertinoColors.systemPurple),
+  systemRed(CupertinoColors.systemRed),
+  systemTeal(CupertinoColors.systemTeal),
+  systemYellow(CupertinoColors.systemYellow),
+  systemGrey4(CupertinoColors.systemGrey4);
+
+  final CupertinoDynamicColor color;
+
+  const NSColorType(this.color);
+
+  factory NSColorType.fromString(String value) {
+    return NSColorType.values.firstWhereOrNull((color) => color.name == value) ??
+        NSColorType.systemBlue;
+  }
+  static NSColorType? fromStringOrNull(String value) {
+    return NSColorType.values.firstWhereOrNull((color) => color.name == value);
   }
 }

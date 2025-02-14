@@ -27,7 +27,7 @@ class NSCustomNavigatorKey extends NSBaseNavigatorKey {
         navigator.goBack(result, context);
         return true;
       },
-      customPushWidget: <T>(widget) => navigator.to(widget),
+      customPushWidget: <T>(widget) => navigator.to(widget, context: context),
     );
   }
   @override
